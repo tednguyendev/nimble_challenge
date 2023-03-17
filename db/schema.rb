@@ -12,15 +12,18 @@
 
 ActiveRecord::Schema.define(version: 2023_03_17_081359) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "keywords", force: :cascade do |t|
     t.string "value"
-    t.integer "user_id"
-    t.integer "report_id"
+    t.bigint "user_id"
+    t.bigint "report_id"
     t.integer "ad_words_count"
     t.integer "links_count"
     t.bigint "total_results"
     t.decimal "search_time", precision: 14, scale: 4
-    t.text "html_string", limit: 60000
+    t.text "html_string"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["report_id"], name: "index_keywords_on_report_id"
@@ -29,7 +32,7 @@ ActiveRecord::Schema.define(version: 2023_03_17_081359) do
 
   create_table "reports", force: :cascade do |t|
     t.string "name", default: ""
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_reports_on_user_id"

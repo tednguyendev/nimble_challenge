@@ -3,8 +3,10 @@ require 'rails_helper'
 RSpec.describe Api::V1::Google::FetchResults, type: :model do
   describe '#call' do
     let(:params) do
-      { keywords: keywords }
+      { file: file }
     end
+    let(:csv_file_path) { Rails.root.join('spec', 'mocks', 'test_data_100.csv') }
+    let(:file) { File.open(csv_file_path, 'r') }
 
     let(:max_keywords) { 100 }
 

@@ -4,19 +4,21 @@ module GoogleScrape
     # 10 => 5s
     # 20 => 3s
     def self.fetch_results(keywords)
-      hydra = Typhoeus::Hydra.new(max_concurrency: 10)
+      a1 = Time.now
+      results = []
 
-      requests = keywords.map { |keyword|
-        request = Typhoeus::Request.new(
-          "https://www.google.com/search?q=#{keyword}",
-          method: :get,
-          followlocation: true
-        )
-        hydra.queue(request)
-        request
-      }
-      hydra.run
-      requests
+      keywords.each do |keyword|
+        results << fetch(keyword)
+      end
+
+      a2 = Time.now
+      p('==============')
+      p('==============')
+      p('==============')
+      p('==============')
+      p(results.map { |z| z.code })
+      p(a2 - a1)
+      results
 
       # if response.ok?
         # return {
@@ -27,6 +29,12 @@ module GoogleScrape
       # end
 
       # nil
+    end
+
+    def self.fetch(keyword)
+      # sleep(delay)
+      url = "https://www.google.com/search"
+      Typhoeus.get(url, params: { q: keyword }, followlocation: true)
     end
   end
 end

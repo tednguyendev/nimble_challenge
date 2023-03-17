@@ -6,7 +6,8 @@ ruby '2.6.6'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.7', '>= 6.1.7.3'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3', '~> 1.4'
+# gem 'sqlite3', '~> 1.4'
+gem 'postgresql'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -26,7 +27,9 @@ gem 'jwt', '~> 2.2'
 gem 'httparty', '~> 0.18.1'
 gem 'typhoeus'
 gem 'vcr'
-
+gem 'nokogiri'
+gem 'webdrivers', '~> 5.0'
+gem 'selenium-webdriver'
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
 

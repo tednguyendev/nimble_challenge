@@ -6,15 +6,17 @@ module Api
         prepend SimpleResponse
 
         def initialize(opts = {})
-          @opts = opts
+          @file = opts[:file]
         end
 
         def call
           byebug
-          arr = ait
+          (1..10).to_a.each do |_|
+            fetch_all
+          end
 
           # Typhoeus::Request.new(
-          #   "https://www.google.com/search?q=#{opts[:keywords][0]}",
+          #   "https://www.google.com/search?q=#{keywords[0]}",
           #   method: :get,
           #   followlocation: true
           # )
@@ -23,11 +25,16 @@ module Api
 
         private
 
-        def ait
+        def keywords
+          @keywords ||= CSV.parse(file.read).flatten
+        end
+
+
+        def fetch_all
           a1 = Time.now
           results = []
 
-          opts[:keywords].each do |keyword|
+          keywords.each do |keyword|
             results << fetch(keyword)
           end
 
@@ -39,6 +46,36 @@ module Api
           p(results.map { |z| z.code })
           p(a2 - a1)
         end
+
+        # def fetch_all
+        #   a1 = Time.now
+        #   hydra = Typhoeus::Hydra.new(max_concurrency: 2)
+
+        #   results = keywords.map { |keyword|
+        #     sleep(delay)
+        #     request = Typhoeus::Request.new(
+        #       "https://www.google.com/search?q=#{keyword}",
+        #       # proxy: proxy,
+        #       method: :get,
+        #       headers: {
+        #         "User-Agent" => user_agent
+        #       },
+        #       followlocation: true
+        #     )
+        #     hydra.queue(request)
+        #     request
+        #   }
+        #   hydra.run
+        #   results
+
+        #   a2 = Time.now
+        #   p('==============')
+        #   p('==============')
+        #   p('==============')
+        #   p('==============')
+        #   p(results.map { |z| z.response.code })
+        #   p(a2 - a1)
+        # end
 
         def fetch(keyword)
           # sleep(delay)
@@ -1077,7 +1114,7 @@ module Api
           ]
         end
 
-        attr_reader :opts
+        attr_reader :file
       end
     end
   end
