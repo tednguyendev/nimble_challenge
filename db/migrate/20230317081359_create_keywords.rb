@@ -12,7 +12,7 @@ class CreateKeywords < ActiveRecord::Migration[6.1]
       t.bigint :total_results
       t.decimal :search_time, precision: 14, scale: 4
 
-      t.text :html_string, :limit => 60_000
+      t.text :html_string
 
       t.timestamps
     end
