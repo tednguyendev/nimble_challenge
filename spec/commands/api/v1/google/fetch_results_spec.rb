@@ -6,7 +6,7 @@ RSpec.describe Api::V1::Google::FetchResults, type: :model do
       { keywords: keywords }
     end
 
-    let(:max_keywords) { 50 }
+    let(:max_keywords) { 100 }
 
     let(:keywords) do
       (1..max_keywords).to_a.map do |i|

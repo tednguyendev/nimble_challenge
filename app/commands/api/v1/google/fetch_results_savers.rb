@@ -23,6 +23,26 @@ module Api
 
         private
 
+        # def ait
+        #   hydra = Typhoeus::Hydra.new(max_concurrency: 10)
+
+        #   requests = opts[:keywords].map { |keyword|
+        #     request = Typhoeus::Request.new(
+        #       "https://www.google.com/search?q=#{keyword}",
+        #       proxy: proxy,
+        #       method: :get,
+        #       headers: {
+        #         "User-Agent" => user_agent
+        #       },
+        #       followlocation: true
+        #     )
+        #     hydra.queue(request)
+        #     request
+        #   }
+        #   hydra.run
+        #   requests
+        # end
+
         def ait
           a1 = Time.now
           results = []
@@ -41,15 +61,15 @@ module Api
         end
 
         def fetch(keyword)
-          # sleep(delay)
+          sleep(delay)
           url = "https://www.google.com/search?q=#{keyword}"
           HTTParty.get(
             url,
             # http_proxyaddr: proxy.split(':')[0],
             # http_proxyport: proxy.split(':')[1],
-            # headers: {
-            #   "User-Agent" => user_agent
-            # }
+            headers: {
+              "User-Agent" => user_agent
+            }
           )
         end
 
