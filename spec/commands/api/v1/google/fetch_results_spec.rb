@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Api::V1::Google::FetchResultsSavers, type: :model do
+RSpec.describe Api::V1::Google::FetchResults, type: :model do
   describe '#call' do
     let(:params) do
       {
@@ -18,13 +18,23 @@ RSpec.describe Api::V1::Google::FetchResultsSavers, type: :model do
     #   allow_any_instance_of(described_class).to receive(:fetch_all).and_return(google_search_response)
     # end
 
-    # before do
-
-    # end
-
     it 'test' do
+      a1 = Time.now
       cmd = described_class.call(params)
-      p cmd.result
+      a2 = Time.now
+      p('==============')
+      p('==============')
+      p('==============')
+      p('==============')
+      p('===ad_words_count===')
+      p(Keyword.pluck(:ad_words_count))
+      p('===links_count===')
+      p(Keyword.pluck(:links_count))
+      p('===total_results===')
+      p(Keyword.pluck(:total_results))
+      p('===search_time===')
+      p(Keyword.pluck(:search_time))
+      p(a2 - a1)
 
       expect(cmd.success?).to be(true)
     end

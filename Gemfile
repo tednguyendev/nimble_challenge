@@ -30,6 +30,9 @@ gem 'vcr'
 gem 'nokogiri'
 gem 'webdrivers', '~> 5.0'
 gem 'selenium-webdriver'
+gem 'sidekiq'
+gem 'redis'
+gem 'tor'
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
 

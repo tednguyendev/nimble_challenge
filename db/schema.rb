@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_03_17_081359) do
+ActiveRecord::Schema.define(version: 2023_03_17_155348) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 2023_03_17_081359) do
     t.text "html_string"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "status", default: 0
     t.index ["report_id"], name: "index_keywords_on_report_id"
     t.index ["user_id"], name: "index_keywords_on_user_id"
   end
@@ -35,6 +36,8 @@ ActiveRecord::Schema.define(version: 2023_03_17_081359) do
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "percentage", default: 0
+    t.integer "status", default: 0
     t.index ["user_id"], name: "index_reports_on_user_id"
   end
 
