@@ -10,7 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_03_17_081119) do
+ActiveRecord::Schema.define(version: 2023_03_17_081359) do
+
+  create_table "keywords", force: :cascade do |t|
+    t.string "value"
+    t.integer "user_id"
+    t.integer "report_id"
+    t.integer "ad_words_count"
+    t.integer "links_count"
+    t.bigint "total_results"
+    t.decimal "search_time", precision: 14, scale: 4
+    t.text "html_string", limit: 60000
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["report_id"], name: "index_keywords_on_report_id"
+    t.index ["user_id"], name: "index_keywords_on_user_id"
+  end
 
   create_table "reports", force: :cascade do |t|
     t.string "name", default: ""
@@ -27,5 +42,7 @@ ActiveRecord::Schema.define(version: 2023_03_17_081119) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "keywords", "reports"
+  add_foreign_key "keywords", "users"
   add_foreign_key "reports", "users"
 end
