@@ -6,6 +6,7 @@ module Api
         prepend SimpleResponse
 
         def initialize(opts = {})
+          @name = opts[:name]
           @file = opts[:file]
           @current_user = opts[:current_user]
         end
@@ -19,7 +20,7 @@ module Api
             )
           end
 
-          report = Report.create(user: current_user)
+          report = Report.create(user: current_user, name: name)
 
           ActiveRecord::Base.transaction do
             keywords.each do |keyword|
@@ -46,7 +47,7 @@ module Api
           @keywords ||= CSV.parse(file.read).flatten.uniq
         end
 
-        attr_reader :file, :current_user
+        attr_reader :name, :file, :current_user
       end
     end
   end

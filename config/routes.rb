@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       scope :reports do
         post '', to: 'reports#create'
         get '', to: 'reports#list'
+        get '/:id', to: 'reports#get'
       end
     end
   end
