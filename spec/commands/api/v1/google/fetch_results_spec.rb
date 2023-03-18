@@ -8,7 +8,7 @@ RSpec.describe Api::V1::Google::FetchResults, type: :model do
         current_user: create(:user)
       }
     end
-    let(:csv_file_path) { Rails.root.join('spec', 'mocks', 'test_data_2.csv') }
+    let(:csv_file_path) { Rails.root.join('spec', 'mocks', 'test_data_10.csv') }
 
     # let(:google_search_response) do
     #   VCR.use_cassette("google/searches_2") { GoogleScrape::Search.fetch_results(CSV.parse(File.open(csv_file_path, 'r').read).flatten) }

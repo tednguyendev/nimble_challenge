@@ -10,16 +10,14 @@ module Api
         end
 
         def call
-          options = Selenium::WebDriver::Chrome::Options.new
-          options.add_argument('headless')
-          @driver = Selenium::WebDriver.for(:chrome, options: options)
+          keywords.in_groups_of(10).each do |group|
+            gr = group.compact
+            sleep(long_delay)
 
-          keywords.each do |keyword|
-            fetch(keyword)
+            gr.each do |keyword|
+              fetch(keyword) unless keyword.success?
+            end
           end
-
-          byebug
-          @driver.quit
         end
 
         private
@@ -32,15 +30,27 @@ module Api
           @keywords ||= report.keywords
         end
 
-        def delay
+        def long_delay
+          # to create some randomness, fake human behavior
+          rand(0.4..2.4).round(1)
+        end
+
+        def short_delay
           # to create some randomness, fake human behavior
           rand(0.2..1.2).round(1)
         end
 
         def fetch(keyword)
-          sleep(delay)
-          @driver.get "https://www.google.com/search?q=#{URI.encode(keyword.value)}"
-          html_string = @driver.page_source
+          options = Selenium::WebDriver::Chrome::Options.new
+          options.add_argument('headless')
+          options.add_argument("user-agent=#{user_agent}")
+          driver = Selenium::WebDriver.for(:chrome, options: options)
+
+          sleep(short_delay)
+          driver.get "https://www.google.com/search?q=#{URI.encode(keyword.value)}"
+          html_string = driver.page_source
+          driver.quit
+
           doc = Nokogiri::HTML(html_string)
 
           total_results = nil
@@ -65,6 +75,16 @@ module Api
             html_string: html_string,
             status: :success
           )
+
+        end
+
+        def user_agent
+          user_agents.rotate!
+          user_agents.first
+        end
+
+        def user_agents
+          @user_agents ||= Api::V1::Google::GetUserAgents.call.result
         end
 
         attr_reader :report_id
