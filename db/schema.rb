@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_03_18_042852) do
+ActiveRecord::Schema.define(version: 2023_03_18_163253) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,7 +28,9 @@ ActiveRecord::Schema.define(version: 2023_03_18_042852) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "status", default: 0
     t.index ["report_id"], name: "index_keywords_on_report_id"
+    t.index ["status"], name: "index_keywords_on_status"
     t.index ["user_id"], name: "index_keywords_on_user_id"
+    t.index ["value"], name: "index_keywords_on_value"
   end
 
   create_table "reports", force: :cascade do |t|
@@ -38,6 +40,9 @@ ActiveRecord::Schema.define(version: 2023_03_18_042852) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "percentage", default: 0
     t.integer "status", default: 0
+    t.index ["name"], name: "index_reports_on_name"
+    t.index ["percentage"], name: "index_reports_on_percentage"
+    t.index ["status"], name: "index_reports_on_status"
     t.index ["user_id"], name: "index_reports_on_user_id"
   end
 
@@ -47,6 +52,8 @@ ActiveRecord::Schema.define(version: 2023_03_18_042852) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "activated", default: false
+    t.index ["activated"], name: "index_users_on_activated"
+    t.index ["email"], name: "index_users_on_email"
   end
 
   add_foreign_key "keywords", "reports"
