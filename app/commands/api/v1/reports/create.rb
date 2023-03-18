@@ -1,7 +1,7 @@
 module Api
   module V1
-    module Google
-      class FetchResults
+    module Reports
+      class Create
         prepend SimpleCommand
         prepend SimpleResponse
 
@@ -11,6 +11,14 @@ module Api
         end
 
         def call
+          if keywords.blank?
+            errors.add(:file, 'invalid')
+
+            return response(
+              message: 'Invalid file'
+            )
+          end
+
           report = Report.create(user: current_user)
 
           ActiveRecord::Base.transaction do
@@ -22,8 +30,14 @@ module Api
             end
           end
 
+          response(
+            data: {
+              id: report.id
+            }
+          )
+
           # FetchData.perform_async(report.id)
-          Api::V1::Google::FetchKeywords.call(report.id)
+          # Api::V1::Google::FetchKeywords.call(report.id)
         end
 
         private

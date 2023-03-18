@@ -43,7 +43,6 @@ module Api
         def fetch(keyword)
           options = Selenium::WebDriver::Chrome::Options.new
           options.add_argument('headless')
-          options.add_argument("user-agent=#{user_agent}")
           driver = Selenium::WebDriver.for(:chrome, options: options)
 
           sleep(short_delay)
@@ -75,7 +74,6 @@ module Api
             html_string: html_string,
             status: :success
           )
-
         end
 
         def user_agent

@@ -32,3 +32,4 @@
 .DS_Store
 app/.DS_ Store
 app/commands/.DS_Store
+.env
