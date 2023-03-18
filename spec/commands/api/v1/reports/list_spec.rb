@@ -7,9 +7,9 @@ RSpec.describe Api::V1::Reports::List, type: :model do
 
   let!(:user) { create(:user) }
 
-  let!(:report1) { create(:report, name: 'b', user: user) }
-  let!(:report2) { create(:report, name: 'a', user: user) }
-  let!(:report3) { create(:report, name: 'c', user: user) }
+  let!(:report1) { create(:report, name: 'b', user: user, status: :pending, percentage: 0) }
+  let!(:report2) { create(:report, name: 'a', user: user, status: :pending, percentage: 10) }
+  let!(:report3) { create(:report, name: 'c', user: user, status: :success, percentage: 100) }
 
   let!(:keyword1) { create(:keyword, value: 'a', report: report1) }
   let!(:keyword2) { create(:keyword, value: 'b', report: report2) }
@@ -143,6 +143,62 @@ RSpec.describe Api::V1::Reports::List, type: :model do
       let(:params) do
         {
           order_by: 'created_at_ascending'
+        }
+      end
+
+      it 'returns correct report' do
+        cmd = described_class.call(params.merge(current_user: user))
+
+        expect(cmd.result[:data][:records].pluck(:id)).to eq([report1_id, report2_id, report3_id])
+      end
+    end
+
+    context 'order_by_status_descending' do
+      let(:params) do
+        {
+          order_by: 'status_descending'
+        }
+      end
+
+      it 'returns correct report' do
+        cmd = described_class.call(params.merge(current_user: user))
+
+        expect(cmd.result[:data][:records].pluck(:id)).to eq([report3_id, report1_id, report2_id])
+      end
+    end
+
+    context 'order_by_status_ascending' do
+      let(:params) do
+        {
+          order_by: 'status_ascending'
+        }
+      end
+
+      it 'returns correct report' do
+        cmd = described_class.call(params.merge(current_user: user))
+
+        expect(cmd.result[:data][:records].pluck(:id)).to eq([report1_id, report2_id, report3_id])
+      end
+    end
+
+    context 'order_by_percentage_descending' do
+      let(:params) do
+        {
+          order_by: 'percentage_descending'
+        }
+      end
+
+      it 'returns correct report' do
+        cmd = described_class.call(params.merge(current_user: user))
+
+        expect(cmd.result[:data][:records].pluck(:id)).to eq([report3_id, report2_id, report1_id])
+      end
+    end
+
+    context 'order_by_percentage_ascending' do
+      let(:params) do
+        {
+          order_by: 'percentage_ascending'
         }
       end
 

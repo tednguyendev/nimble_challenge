@@ -61,6 +61,14 @@ module Api
             reports.order_by_created_at_descending
           when 'created_at_ascending'
             reports.order_by_created_at_ascending
+          when 'status_descending'
+            reports.order_by_status_descending
+          when 'status_ascending'
+            reports.order_by_status_ascending
+          when 'percentage_descending'
+            reports.order_by_percentage_descending
+          when 'percentage_ascending'
+            reports.order_by_percentage_ascending
           else
             reports.order_by_created_at_descending
           end
