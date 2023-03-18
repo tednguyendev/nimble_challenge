@@ -2,7 +2,7 @@ module Api
   module V1
     class ReportsController < BaseController
       def create
-        cmd = Api::V1::Reports::Create.call({ file: permitted_params['file']}.merge(current_user: current_user))
+        cmd = Api::V1::Reports::Create.call({ file: permitted_params['file'], name: permitted_params['name']}.merge(current_user: current_user))
 
         if cmd.success?
           render json: cmd.result, status: :ok
@@ -13,6 +13,16 @@ module Api
 
       def list
         cmd = Api::V1::Reports::List.call(permitted_params.merge(current_user: current_user))
+
+        if cmd.success?
+          render json: cmd.result, status: :ok
+        else
+          render json: cmd.result, status: :unprocessable_entity
+        end
+      end
+
+      def get
+        cmd = Api::V1::Reports::Get.call(permitted_params.merge(current_user: current_user))
 
         if cmd.success?
           render json: cmd.result, status: :ok

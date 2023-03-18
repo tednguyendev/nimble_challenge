@@ -4,11 +4,12 @@ RSpec.describe Api::V1::Reports::Create, type: :model do
   describe '#call' do
     let(:params) do
       {
+        name: 'ted',
         file: File.open(csv_file_path, 'r'),
         current_user: create(:user)
       }
     end
-    let(:csv_file_path) { Rails.root.join('spec', 'mocks', 'test_data_0.csv') }
+    let(:csv_file_path) { Rails.root.join('spec', 'mocks', 'test_data_2.csv') }
 
     # let(:google_search_response) do
     #   VCR.use_cassette("google/searches_2") { GoogleScrape::Search.fetch_results(CSV.parse(File.open(csv_file_path, 'r').read).flatten) }
@@ -21,7 +22,6 @@ RSpec.describe Api::V1::Reports::Create, type: :model do
     it 'test' do
       # a1 = Time.now
       cmd = described_class.call(params)
-      byebug
       # a2 = Time.now
       # p('==============')
       # p('==============')

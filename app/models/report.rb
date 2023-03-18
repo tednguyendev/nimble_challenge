@@ -14,7 +14,7 @@ class Report < ApplicationRecord
   private
 
   def set_name
-    self.name = "Report at #{Time.current.strftime('%Y-%m-%d %H:%M:%S')}" if self.new_record? && self.name.blank?
+    self.name = "Report at #{Time.current.strftime('%Y-%m-%d %H:%M:%S')}" if self.new_record? && !self.name.present?
   end
 
   def set_status
