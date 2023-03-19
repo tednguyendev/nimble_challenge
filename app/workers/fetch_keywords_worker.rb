@@ -1,4 +1,4 @@
-class FetchData
+class FetchKeywordsWorker
   include Sidekiq::Worker
 
   def perform(report_id)

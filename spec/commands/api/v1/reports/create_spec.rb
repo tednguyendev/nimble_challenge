@@ -9,7 +9,7 @@ RSpec.describe Api::V1::Reports::Create, type: :model do
         current_user: create(:user)
       }
     end
-    let(:csv_file_path) { Rails.root.join('spec', 'mocks', 'dog.png') }
+    let(:csv_file_path) { Rails.root.join('spec', 'mocks', 'test_data_2.csv') }
 
     # let(:google_search_response) do
     #   VCR.use_cassette("google/searches_2") { GoogleScrape::Search.fetch_results(CSV.parse(File.open(csv_file_path, 'r').read).flatten) }

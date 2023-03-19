@@ -39,7 +39,7 @@ module Api
             end
           end
 
-          FetchData.perform_async(report.id)
+          FetchKeywordsWorker.perform_async(report.id)
 
           response(
             data: {

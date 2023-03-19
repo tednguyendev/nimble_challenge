@@ -57,9 +57,7 @@ Of course, these are not foolproof methods to prevent being banned or blocked en
 
 One area of concern for using the headless browser is its slowness.
 
-To improve this, I also tried to use the Typhoeus to test by calling some HTTParty calls first, and although I found that it can speed up this process a lot by fetching pages parallelly, doing this faster also means that we are sending more requests to the servers, which also means that we are more likely to be banned(it only took like 4 or 5 CSV file uploads to be rate limited).
-
-One way that I use to cope with this problem is to have a friendly-to-use user interface.
+To improve this, I also tried to use the Typhoeus to try to crawl, and although I found that it can speed up this process a lot by fetching pages parallelly, doing this faster also means that we are sending more requests to the servers, which also means that we are more likely to be banned(it only took like 4 or 5 CSV file uploads to be rate limited).
 
 The first method is to partially load and show the user the scraped data for each keyword as soon as possible.
 
