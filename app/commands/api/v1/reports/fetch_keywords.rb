@@ -15,9 +15,13 @@ module Api
             sleep(long_delay)
 
             gr.each do |keyword|
-              fetch(keyword) unless keyword.success?
+              unless keyword.success?
+                status = fetch(keyword)
+                return handle_false unless status
+              end
             end
           end
+
           send_report_status_mail
         end
 
@@ -28,7 +32,7 @@ module Api
         end
 
         def keywords
-          @keywords ||= report.keywords
+          @keywords ||= report.keywords.where.not(status: :success)
         end
 
         def long_delay
@@ -53,6 +57,11 @@ module Api
 
           doc = Nokogiri::HTML(html_string)
 
+          if doc.css('#captcha-form').length >= 1
+            keyword.update(status: :failed)
+            return false
+          end
+
           total_results = nil
           search_time = nil
 
@@ -75,6 +84,8 @@ module Api
             html_string: html_string,
             status: :success
           )
+
+          true
         end
 
         def user_agent
@@ -84,6 +95,11 @@ module Api
 
         def user_agents
           @user_agents ||= Api::V1::Google::GetUserAgents.call.result
+        end
+
+        def handle_false
+          report.update(status: :failed)
+          send_report_status_mail
         end
 
         def send_report_status_mail

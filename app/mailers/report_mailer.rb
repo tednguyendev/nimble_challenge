@@ -7,7 +7,7 @@ class ReportMailer < ApplicationMailer
     if report.present?
       @url = "#{ENV['FRONT_END_ENDPOINT']}/reports/#{report.id}"
 
-      mail(to: report.user.email, subject: "Your report scraping is done! 🎉")
+      mail(to: report.user.email, subject: "Your report scraping is done!")
     end
   end
 end
