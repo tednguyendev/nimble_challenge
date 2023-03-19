@@ -17,9 +17,9 @@ module Api
         cmd = Api::V1::Authenticate::VerifyEmail.call(params)
 
         if cmd.success?
-          redirect_to("#{ENV['FRONT_END_ENDPOINT']}/sign-in")
+          redirect_to("#{ENV['FRONT_END_ENDPOINT']}/sign-in?status=success")
         else
-          redirect_to("#{ENV['FRONT_END_ENDPOINT']}/404")
+          redirect_to("#{ENV['FRONT_END_ENDPOINT']}/sign-in?status=fail")
         end
       end
 
