@@ -5,13 +5,12 @@ I will use this README to show about my approach, what obstables I met, what are
 - [First MVP 2023-03-19 17:47](https://share.cleanshot.com/bWY03jmP)
 
 ## Links
-- [Backend github repo(this repo)](https://github.com/tednguyendev/nimble_challenge)
 - [Frontend github repo](https://github.com/tednguyendev/nimble_challenge_fe)
 - [Postman collection(version 2023-03-19 20:00)](https://api.postman.com/collections/9434315-f930a92c-eb4e-48ee-89ef-8fb53ff49baf?access_key=PMAT-01GVWZ6R79MM3W3JXV76YR3B56)
 - [.env file]()
   - TBD
 
-## E
+## Obstacles and approaches
 ### Obstacles
 As I researched, one of the most popular and most efficient ways to handle the limitations of mass-searching keywords that people usually use are:
 - Use the Google Search API
