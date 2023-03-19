@@ -1,24 +1,6 @@
-# README
+# [WIP] Documentation
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+I will use this README to show about my approach, what obstables I met, what are the features that I will implement if I still have time, the demos, ...
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Demos
+- [First demo 2023-03-19 17:30](https://share.cleanshot.com/L57jq1Qp)

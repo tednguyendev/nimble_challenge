@@ -31,8 +31,7 @@ module Api
             end
           end
 
-          # FetchData.perform_async(report.id)
-          Api::V1::Reports::FetchKeywords.call(report.id)
+          FetchData.perform_async(report.id)
 
           response(
             data: {

@@ -18,6 +18,7 @@ module Api
               fetch(keyword) unless keyword.success?
             end
           end
+          send_report_status_mail
         end
 
         private
@@ -83,6 +84,10 @@ module Api
 
         def user_agents
           @user_agents ||= Api::V1::Google::GetUserAgents.call.result
+        end
+
+        def send_report_status_mail
+          ReportMailer.report_status(report_id).deliver_later
         end
 
         attr_reader :report_id

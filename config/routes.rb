@@ -11,6 +11,10 @@ Rails.application.routes.draw do
         get '', to: 'reports#list'
         get '/:id', to: 'reports#get'
       end
+
+      scope :keywords do
+        get '/:id/html-source', to: 'keywords#get_html_source'
+      end
     end
   end
 end
