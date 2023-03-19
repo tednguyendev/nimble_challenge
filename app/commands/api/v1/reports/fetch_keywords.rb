@@ -1,6 +1,6 @@
 module Api
   module V1
-    module Google
+    module Reports
       class FetchKeywords
         prepend SimpleCommand
         prepend SimpleResponse

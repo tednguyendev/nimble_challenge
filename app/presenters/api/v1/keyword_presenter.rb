@@ -11,6 +11,7 @@ module Api
           total_results: entity.total_results,
           search_time: entity.search_time,
           status: entity.status,
+          origin_page: "https://www.google.com/search?q=#{URI.encode(entity.value)}"
           # html_string
         }
       end

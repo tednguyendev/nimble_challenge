@@ -10,7 +10,7 @@ class UserMailer < ApplicationMailer
       subject = "Verify your Email"
       email = user.email
 
-      mail(to: email, subject: "Welcome to Nimble Web Crawler Service! 👋🏻")
+      mail(to: email, subject: "Welcome to Nimble Web Scraper Service! 👋🏻")
     end
   end
 end
