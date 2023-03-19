@@ -20,9 +20,13 @@ module Api
             )
           end
 
-          report = Report.create(user: current_user, name: name)
+          report = nil
 
           ActiveRecord::Base.transaction do
+            report = Report.create(
+              user: current_user,
+              name: name
+            )
             keywords.each do |keyword|
               Keyword.create(
                 value: keyword,
@@ -31,6 +35,7 @@ module Api
             end
           end
 
+          byebug
           FetchData.perform_async(report.id)
 
           response(
