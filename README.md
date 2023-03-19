@@ -11,7 +11,7 @@ I will use this README to show about my approach, what obstables I met, what are
 - [.env file]()
   - TBD
 
-## Approaches and obstacles
+## E
 ### Obstacles
 As I researched, one of the most popular and most efficient ways to handle the limitations of mass-searching keywords that people usually use are:
 - Use the Google Search API
@@ -30,14 +30,14 @@ But we can not use any third-party services, including the third-party services 
 I also discovered other ways to handle the mass-searching problem, but I'm afraid they are still considered third-party services.
 
 As to rotate proxies, using third-party services is not the only way:
-- We can use our own rotate proxies.
+- We can create our own proxies to rotate.
 - We can scrape sites that provide free rotate proxies, like [this](https://free-proxy-list.net/rotating-proxy-open.html), to have a list of short-lived free-to-use proxies.
 
 Besides that, we can distribute the crawl to multiple machines, and each server can have its own IP.
 
 Another way is to use the headless browser to run the Tor browser - the browser that can help its user browse the internet anonymously without exposing their IP.
 
-These are all the ways that are still very effective in protecting the application from being banned, although not as effective as using rotating proxies or scraping services. But since I think they are still considered third-party services, I won't use them(**If they are not and I can use them, please tell me, thank you!**).
+These are all the ways that are still very effective in protecting the application from being banned, although not as effective as using rotating proxies or scraping services. But since I think they are still third-party services, I won't use them. But if they are not and I can use them, please tell me, thank you!
 
 ### My approaches
 Not as effective as the earlier methods, I figured out that there are still ways to reduce the chance of the application being banned.
