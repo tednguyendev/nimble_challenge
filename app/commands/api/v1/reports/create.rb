@@ -1,3 +1,7 @@
+MAX_SIZE = 10.megabytes
+MIN_KEYWORDS = 1
+MAX_KEYWORDS = 100
+
 module Api
   module V1
     module Reports
@@ -12,7 +16,7 @@ module Api
         end
 
         def call
-          if keywords.blank?
+          if invalid_file_format || invalid_file_size || invalid_total_keywords
             errors.add(:file, 'invalid')
 
             return response(
@@ -35,7 +39,6 @@ module Api
             end
           end
 
-          byebug
           FetchData.perform_async(report.id)
 
           response(
@@ -46,6 +49,18 @@ module Api
         end
 
         private
+
+        def invalid_file_format
+          File.extname(file.path).downcase != ".csv"
+        end
+
+        def invalid_file_size
+          File.size(file.path) > MAX_SIZE
+        end
+
+        def invalid_total_keywords
+          keywords.length < MIN_KEYWORDS || keywords.length > MAX_KEYWORDS
+        end
 
         def keywords
           @keywords ||= CSV.parse(file.read).flatten.uniq
