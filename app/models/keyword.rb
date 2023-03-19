@@ -7,6 +7,7 @@ class Keyword < ApplicationRecord
 
   before_validation :set_user_id
   after_update :update_report_percentage
+  scope :order_by_created_at_ascending, -> { order(created_at: :asc) }
 
   private
 

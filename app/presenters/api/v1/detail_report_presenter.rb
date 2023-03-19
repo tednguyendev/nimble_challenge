@@ -8,7 +8,7 @@ module Api
           status: entity.status,
           percentage: entity.percentage,
           created_at: entity.created_at.strftime('%Y-%m-%d %H:%M:%S'),
-          keywords: Api::V1::KeywordPresenter.json(entity.keywords)
+          keywords: Api::V1::KeywordPresenter.json(entity.keywords.order_by_created_at_ascending)
         }
       end
     end
