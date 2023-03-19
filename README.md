@@ -37,7 +37,7 @@ Besides that, we can distribute the crawl to multiple machines, and each server 
 
 Another way is to use the headless browser to run the Tor browser - the browser that can help its user browse the internet anonymously without exposing their IP.
 
-These are all the ways that are still very effective in protecting the application from being banned, although not as effective as using rotating proxies or scraping services. But since I think they are still third-party services, I won't use them. But if they are not and I can use them, please tell me, thank you!
+These are all the ways that are still very effective in protecting the application from being banned, although not as effective as using rotating proxies or scraping services. But since I think they are still third-party services(creating our own proxies may need tools and servers, using Tor means that we depend on Tor, or distributing the crawl may need more cloud servers ,...), I won't use them. But if they are not and I can use them, please tell me; thank you!
 
 ### My approaches
 Not as effective as the earlier methods, I figured out that there are still ways to reduce the chance of the application being banned.
