@@ -1,8 +1,7 @@
+# spec/factories/users.rb
 FactoryBot.define do
   factory :user do
-    sequence :email do |n|
-      "jobs#{n}+1@tednguyen.me"
-    end
+    email { Faker::Internet.email }
     password { 'password123' }
   end
 end
