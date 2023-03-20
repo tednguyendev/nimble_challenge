@@ -10,6 +10,7 @@ Rails.application.routes.draw do
         post '', to: 'reports#create'
         get '', to: 'reports#list'
         get '/:id', to: 'reports#get'
+        post '/:id/retry', to: 'reports#refetch_keywords'
       end
 
       scope :keywords do

@@ -31,6 +31,16 @@ module Api
         end
       end
 
+      def refetch_keywords
+        cmd = Api::V1::Reports::RefetchKeywords.call(permitted_params.merge(current_user: current_user))
+
+        if cmd.success?
+          render json: cmd.result, status: :ok
+        else
+          render json: cmd.result, status: :unprocessable_entity
+        end
+      end
+
       private
 
       def permitted_params

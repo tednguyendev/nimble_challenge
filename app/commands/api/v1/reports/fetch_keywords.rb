@@ -32,7 +32,10 @@ module Api
         end
 
         def keywords
-          @keywords ||= report.keywords.where.not(status: :success)
+          @keywords ||=
+            report.keywords
+                  .where(status: :pending)
+                  .order_by_created_at_ascending
         end
 
         def long_delay
