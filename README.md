@@ -65,7 +65,7 @@ Like this,
 
 ![Keyword load](public/keyword-load.png)
 
-The scraped information of each keyword row will be shown to the user periodly(I use polling API calls, with 4-second intervals), and although the user will still need to wait for all other keywords to be processed, they can look at the newly updated scraped keyword information row and work on that like first, when waiting for the other keywords to be scraped.
+The scraped information of each keyword row will be shown to the user periodly(I use polling API calls, with 4-second intervals), and although the user will still need to wait for all other keywords to be processed, they can look at the newly updated scraped keyword information row and work on that row first, when waiting for the other keywords to be scraped.
 
 Another method is, instead of asking the user that they have to keep the browser open and to sit there and wait for the result, I tell the user that they do not need to stay, and instead, the Nimble Scraper application will send them a notification email after the whole process is finished.
 
