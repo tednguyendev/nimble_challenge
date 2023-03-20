@@ -1,18 +1,20 @@
 class Keyword < ApplicationRecord
   enum status: %i[pending failed success]
-  validates :value, presence: true
 
   belongs_to :user
   belongs_to :report
 
+  validates :value, presence: true
+
   before_validation :set_user_id
   after_update :update_report_percentage
+
   scope :order_by_created_at_ascending, -> { order(created_at: :asc) }
 
   private
 
   def set_user_id
-    self.user_id = report.user_id
+    self.user_id = report&.user_id
   end
 
   def update_report_percentage
