@@ -4,7 +4,7 @@ module Api
       skip_before_action :authenticate_request!
 
       def sign_up
-        cmd = Api::V1::Authenticate::SignUp.call(permitted_params)
+        cmd = Api::V1::Authenticate::SignUp.call(params)
 
         if cmd.success?
           render json: cmd.result, status: :ok

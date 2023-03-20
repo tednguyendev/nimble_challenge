@@ -1,9 +1,6 @@
 module Api
   module V1
     class BaseController < ApplicationController
-      # protect_from_forgery with: :exception
-      # skip_before_action :verify_authenticity_token
-
       before_action :authenticate_request!
 
       def authenticate_request!
@@ -33,12 +30,6 @@ module Api
       end
 
       protected
-
-      def set_global_variables
-        Current.customer = current_user
-        ActiveStorage::Current.host = request.base_url
-        Rails.application.routes.default_url_options[:host] = request.base_url
-      end
     end
   end
 end
