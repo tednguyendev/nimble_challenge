@@ -36,7 +36,7 @@ module Api
         end
 
         def new_token
-          JsonWebToken.encode(userZ_id: user.id)
+          JsonWebToken.encode(user_id: user.id)
         end
       end
     end
