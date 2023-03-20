@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Api::V1::AuthenticateController do
   let(:success_result) { {:success=>true, :data=>{}, :errors=>[], :message=>""} }
-  let(:failed_result) { {:success=>false, :data=>{}, :errors=>[], :message=>"Something is wront"} }
+  let(:failed_result) { {:success=>false, :data=>{}, :errors=>[], :message=>"Something is wrong"} }
 
   describe 'POST /api/v1/sign-up' do
     let(:prefix_path) { '/api/v1/sign-up' }
