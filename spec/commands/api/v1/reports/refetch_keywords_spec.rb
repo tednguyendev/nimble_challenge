@@ -9,9 +9,9 @@ RSpec.describe Api::V1::Reports::RefetchKeywords, type: :model do
       }
     end
 
-    let!(:user) { create(:user) }
-    let!(:report) { create(:report, name: 'b', user: user) }
-    let!(:report_id) { report.id }
+    let(:user) { create(:user) }
+    let(:report) { create(:report, name: 'b', user: user) }
+    let(:report_id) { report.id }
 
     let!(:keyword1) { create(:keyword, report: report, status: :success) }
     let!(:keyword2) { create(:keyword, report: report, status: :failed) }
