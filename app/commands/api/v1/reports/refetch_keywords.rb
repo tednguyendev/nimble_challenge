@@ -13,8 +13,11 @@ module Api
         def call
           return response(message: 'Report not exists.') if report_not_exists?
 
-          update_report_status
-          update_keywords_status
+          ActiveRecord::Base.transaction do
+            update_report_status
+            update_keywords_status
+          end
+
           refetch_keywords
 
           response
@@ -34,7 +37,6 @@ module Api
 
         def refetch_keywords
           FetchKeywordsWorker.perform_async(report.id)
-          # Api::V1::Reports::FetchKeywords.call(report.id)
         end
 
         def report_not_exists?

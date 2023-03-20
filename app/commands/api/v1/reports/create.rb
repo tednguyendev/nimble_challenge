@@ -24,16 +24,8 @@ module Api
           report = nil
 
           ActiveRecord::Base.transaction do
-            report = Report.create(
-              user: current_user,
-              name: name
-            )
-            keywords.each do |keyword|
-              Keyword.create(
-                value: keyword,
-                report: report,
-              )
-            end
+            report = create_report
+            create_keywords(report)
           end
 
           FetchKeywordsWorker.perform_async(report.id)
@@ -46,6 +38,22 @@ module Api
         end
 
         private
+
+        def create_report
+          Report.create(
+            user: current_user,
+            name: name
+          )
+        end
+
+        def create_keywords(report)
+          keywords.each do |keyword|
+            Keyword.create(
+              value: keyword,
+              report: report,
+            )
+          end
+        end
 
         def invalid_file_format
           File.extname(file.path).downcase != ".csv"
