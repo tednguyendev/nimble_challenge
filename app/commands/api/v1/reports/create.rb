@@ -1,11 +1,12 @@
-MAX_SIZE = 10.megabytes
-MIN_KEYWORDS = 1
-MAX_KEYWORDS = 100
 
 module Api
   module V1
     module Reports
       class Create
+        MAX_SIZE = 10.megabytes
+        MIN_KEYWORDS = 1
+        MAX_KEYWORDS = 100
+
         prepend SimpleCommand
         prepend SimpleResponse
 
