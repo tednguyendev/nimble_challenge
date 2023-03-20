@@ -7,7 +7,7 @@ RSpec.describe Api::V1::Authenticate::SignIn do
 
   subject(:command) { described_class.new(email: email, password: password) }
 
-  context 'when the email is incorrect' do
+  context 'the email is incorrect' do
     let(:email) { 'invalid@tednguyen.me' }
 
     it 'fails' do
@@ -19,7 +19,7 @@ RSpec.describe Api::V1::Authenticate::SignIn do
     end
   end
 
-  context 'when the password is incorrect' do
+  context 'the password is incorrect' do
     let(:password) { 'incorrect' }
 
     it 'fails' do
@@ -31,7 +31,7 @@ RSpec.describe Api::V1::Authenticate::SignIn do
     end
   end
 
-  context 'when the user is not activated' do
+  context 'the user is not activated' do
     before { user }
 
     it 'fails' do
@@ -43,7 +43,7 @@ RSpec.describe Api::V1::Authenticate::SignIn do
     end
   end
 
-  context 'when the email and password are correct & already activated' do
+  context 'the email and password are correct & already activated' do
     before do
       user.update(activated: true)
     end
