@@ -1,64 +1,42 @@
 require 'rails_helper'
 
-RSpec.describe Api::V1::Authenticate::VerifyEmail, type: :model do
-  describe '#call' do
-    let(:user) { create(:user) }
+RSpec.describe Api::V1::Authenticate::VerifyEmail do
+  let(:user) { create(:user) }
+  let(:token) { JsonWebToken.encode(user_id: user.id) }
 
-    context 'invalid token?' do
-      let(:params) { { token: 'a' } }
+  subject(:command) { described_class.new(token: token) }
 
-      it 'fails' do
-        cmd = described_class.call(params)
+  context 'when the token is not valid' do
+    let(:token) { 'invalid_token' }
 
-        expect(cmd.success?).to be(false)
-      end
+    it 'fails' do
+      expect(command.call.success?).to be_falsey
     end
 
-    context 'expired token?' do
-      let(:params) do
-        {
-          token: JsonWebToken.encode({user_id: user.id}, 1.days.ago)
-        }
-      end
+    it 'returns an error message' do
+      expect(command.call.result[:message]).to eq('Token is not valid.')
+    end
+  end
 
-      it 'fails' do
-        cmd = described_class.call(params)
-        # pp "========>cmd.errors : ", cmd.errors, cmd.result
+  context 'when the account is already activated' do
+    before { user.update(activated: true) }
 
-        expect(cmd.success?).to be(false)
-      end
+    it 'fails' do
+      expect(command.call.success?).to be_falsey
     end
 
-    context 'activated account?' do
-      let(:params) do
-        {
-          token: JsonWebToken.encode(user_id: user.id)
-        }
-      end
+    it 'returns an error message' do
+      expect(command.call.result[:message]).to eq('This account is already activated.')
+    end
+  end
 
-      before do
-        user.update(activated: true)
-      end
-
-      it 'fails' do
-        cmd = described_class.call(params)
-
-        expect(cmd.success?).to be(false)
-      end
+  context 'when the token is valid and the account is not activated' do
+    it 'updates the account activation status' do
+      expect { command.call }.to change { user.reload.activated }.from(false).to(true)
     end
 
-    context 'valid token?' do
-      let(:params) do
-        {
-          token: JsonWebToken.encode(user_id: user.id)
-        }
-      end
-
-      it 'success' do
-        cmd = described_class.call(params)
-
-        expect(cmd.success?).to be(true)
-      end
+    it 'returns a new JWT token in the response data' do
+      expect(command.call.result[:data][:token]).to be_a(String)
     end
   end
 end

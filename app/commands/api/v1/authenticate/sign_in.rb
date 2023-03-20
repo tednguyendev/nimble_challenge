@@ -29,7 +29,6 @@ module Api
           response(
             data: {
               token: token,
-              # user_profile: CustomerProfilePresenter.json(user)
             }
           )
         end
