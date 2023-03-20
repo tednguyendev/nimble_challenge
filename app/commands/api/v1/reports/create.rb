@@ -64,6 +64,8 @@ module Api
 
         def keywords
           @keywords ||= CSV.parse(file.read).flatten.uniq
+        rescue
+          @keywords ||= []
         end
 
         attr_reader :name, :file, :current_user
