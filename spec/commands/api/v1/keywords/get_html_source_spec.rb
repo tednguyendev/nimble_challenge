@@ -13,7 +13,7 @@ RSpec.describe Api::V1::Keywords::GetHtmlSource, type: :model do
     let(:report) { create(:report, user: user) }
 
     let(:html_string) { File.open(Rails.root.join('spec', 'mocks', 'crawl_api_google.html'), 'r').read }
-    let(:keyword) { create(:keyword, value: 'a', status: :success, html_string: html_string, report: report) }
+    let(:keyword) { create(:keyword, value: 'a', status: Keyword::SUCCESS, html_string: html_string, report: report) }
     let(:keyword_id) { keyword.id }
 
     subject(:command) { described_class.new(params) }

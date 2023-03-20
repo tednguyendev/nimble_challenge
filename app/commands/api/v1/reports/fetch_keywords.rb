@@ -55,7 +55,7 @@ module Api
           doc = Nokogiri::HTML(html_string)
 
           if doc.css('#captcha-form').length >= 1
-            keyword.update(status: :failed)
+            keyword.update(status: Keyword::FAILED)
             return false
           end
 
@@ -124,7 +124,7 @@ module Api
         end
 
         def handle_false
-          report.update(status: :failed)
+          report.update(status: Report::FAILED)
 
           send_report_status_mail
         end

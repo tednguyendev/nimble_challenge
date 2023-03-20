@@ -13,8 +13,8 @@ RSpec.describe Api::V1::Reports::RefetchKeywords, type: :model do
     let(:report) { create(:report, name: 'b', user: user) }
     let(:report_id) { report.id }
 
-    let!(:keyword1) { create(:keyword, report: report, status: :success) }
-    let!(:keyword2) { create(:keyword, report: report, status: :failed) }
+    let!(:keyword1) { create(:keyword, report: report, status: Keyword::SUCCESS) }
+    let!(:keyword2) { create(:keyword, report: report, status: Keyword::FAILED) }
     let!(:keyword3) { create(:keyword, report: report, status: Keyword::PENDING) }
 
     subject(:command) { described_class.new(params) }

@@ -35,7 +35,7 @@ module Api
 
         def update_keywords_status
           report.keywords
-                .where(status: :failed)
+                .where(status: Keyword::FAILED)
                 .each { |r| r.update!(status: Keyword::PENDING) }
         end
 
@@ -48,7 +48,7 @@ module Api
         end
 
         def report
-          @report ||= current_user.reports.find_by(id: id, status: :failed)
+          @report ||= current_user.reports.find_by(id: id, status: Report::FAILED)
         end
       end
     end

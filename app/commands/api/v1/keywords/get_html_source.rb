@@ -29,7 +29,7 @@ module Api
         end
 
         def keyword
-          @keyword = Keyword.where(user: current_user, status: :success).find_by_id(id)
+          @keyword = Keyword.where(user: current_user, status: Keyword::SUCCESS).find_by_id(id)
         end
       end
     end

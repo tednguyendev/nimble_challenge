@@ -8,7 +8,7 @@ RSpec.describe Api::V1::Reports::FetchKeywords do
   subject(:command) { described_class.new(report.id) }
 
   context 'when report is already finished' do
-    let(:report) { create(:report, status: :success) }
+    let(:report) { create(:report, status: Report::SUCCESS) }
 
     it 'does not change status' do
       expect { command.call }.not_to change { report.reload.status }

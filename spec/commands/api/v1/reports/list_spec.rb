@@ -9,7 +9,7 @@ RSpec.describe Api::V1::Reports::List, type: :model do
 
   let(:report1) { create(:report, name: 'b', user: user, status: Report::PENDING, percentage: 0) }
   let(:report2) { create(:report, name: 'a', user: user, status: Report::PENDING, percentage: 10) }
-  let(:report3) { create(:report, name: 'c', user: user, status: :success, percentage: 100) }
+  let(:report3) { create(:report, name: 'c', user: user, status: Report::SUCCESS, percentage: 100) }
 
   let!(:keyword1) { create(:keyword, value: 'a', report: report1) }
   let!(:keyword2) { create(:keyword, value: 'b', report: report2) }
