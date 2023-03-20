@@ -1,7 +1,9 @@
 class Report < ApplicationRecord
   belongs_to :user
   has_many :keywords, dependent: :destroy
+
   enum status: %i[pending failed success]
+  validates :name, length: { maximum: 255 }
 
   before_create :set_name
   before_update :set_status
