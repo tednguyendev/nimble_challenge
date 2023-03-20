@@ -1,14 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::Reports::FetchKeywords do
-  let(:report) { create(:report, status: :pending) }
+  let(:report) { create(:report, status: Report::PENDING) }
   let(:keyword1) { create(:keyword, value: "crawl api", report: report) }
   let(:keyword2) { create(:keyword, value: "how can i build a house", report: report) }
 
   subject(:command) { described_class.new(report.id) }
 
   context 'when report is already finished' do
-    let(:report) { create(:report, status: :success) }
+    let(:report) { create(:report, status: Report::SUCCESS) }
 
     it 'does not change status' do
       expect { command.call }.not_to change { report.reload.status }
@@ -77,7 +77,7 @@ RSpec.describe Api::V1::Reports::FetchKeywords do
         expect(keyword2.reload.total_results).to be_nil
         expect(keyword2.reload.search_time).to be_nil
         expect(keyword2.reload.html_string).to be_nil
-        expect(keyword2.reload.status).to eq("pending")
+        expect(keyword2.reload.status).to eq(Keyword::PENDING)
       end
 
       it 'report updated correctly' do

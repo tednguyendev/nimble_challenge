@@ -35,12 +35,14 @@ module Api
               id: report.id
             }
           )
+        rescue StandardError => e
+          response(message: e.to_s)
         end
 
         private
 
         def create_report
-          Report.create(
+          Report.create!(
             user: current_user,
             name: name
           )
@@ -48,7 +50,7 @@ module Api
 
         def create_keywords(report)
           keywords.each do |keyword|
-            Keyword.create(
+            Keyword.create!(
               value: keyword,
               report: report,
             )

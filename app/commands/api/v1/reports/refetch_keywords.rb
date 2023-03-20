@@ -21,6 +21,8 @@ module Api
           refetch_keywords
 
           response
+        rescue StandardError => e
+          response(message: e.to_s)
         end
 
         private
@@ -28,11 +30,13 @@ module Api
         attr_reader :id, :current_user
 
         def update_report_status
-          report.update(status: :pending)
+          report.update!(status: Report::PENDING)
         end
 
         def update_keywords_status
-          report.keywords.where(status: :failed).update(status: :pending)
+          report.keywords
+                .where(status: Keyword::FAILED)
+                .each { |r| r.update!(status: Keyword::PENDING) }
         end
 
         def refetch_keywords
@@ -44,7 +48,7 @@ module Api
         end
 
         def report
-          @report ||= current_user.reports.find_by(id: id, status: :failed)
+          @report ||= current_user.reports.find_by(id: id, status: Report::FAILED)
         end
       end
     end

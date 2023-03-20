@@ -13,14 +13,12 @@ module Api
           return unless report.pending?
 
           keywords.in_groups_of(10).each do |group|
-            gr = group.compact
             sleep(long_delay)
 
-            gr.each do |keyword|
-              unless keyword.success?
-                status = fetch(keyword)
-                return handle_false unless status
-              end
+            group.compact.each do |keyword|
+              status = fetch(keyword)
+
+              return handle_false unless status
             end
           end
 
@@ -36,7 +34,7 @@ module Api
         def keywords
           @keywords ||=
             report.keywords
-                  .where(status: :pending)
+                  .where(status: Report::PENDING)
                   .order_by_created_at_ascending
         end
 
@@ -55,7 +53,7 @@ module Api
           doc = Nokogiri::HTML(html_string)
 
           if doc.css('#captcha-form').length >= 1
-            keyword.update(status: :failed)
+            keyword.update(status: Keyword::FAILED)
             return false
           end
 
@@ -69,10 +67,8 @@ module Api
             total_results: total_results,
             search_time: search_time,
             html_string: html_string,
-            status: :success
+            status: Keyword::SUCCESS
           )
-
-          true
         end
 
         def get_total_results_and_search_time(doc)
@@ -95,7 +91,10 @@ module Api
         end
 
         def get_links_count(doc)
-          doc.css('a').map { |l| l['href'] }.select { |l| l.is_a?(String) && "http".in?(l) && !".google.com".in?(l) }.uniq.count
+          doc.css('a')
+             .map { |l| l['href'] }.select { |l| l.is_a?(String) && "http".in?(l) && !".google.com".in?(l) }
+             .uniq
+             .count
         end
 
         def get_page_source(keyword)
@@ -108,6 +107,7 @@ module Api
           driver.get("https://www.google.com/search?q=#{URI.encode(keyword.value)}")
           source = driver.page_source
           driver.quit
+
           source
         end
 
@@ -121,7 +121,8 @@ module Api
         end
 
         def handle_false
-          report.update(status: :failed)
+          report.update(status: Report::FAILED)
+
           send_report_status_mail
         end
 
