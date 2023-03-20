@@ -89,8 +89,7 @@ The email:
 
 ## What's left
 ...
-- Improve codebase, adding more tests, make the code cleaner
-- Handle more edge cases
+- Improve codebase, make the code cleaner
 - Improve UI-UX
 - Deploy the application to AWS using LightSail
 - Keep updating the documentation so that we can communicate asynchronously easier.
