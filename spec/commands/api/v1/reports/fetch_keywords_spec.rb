@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::Reports::FetchKeywords do
-  let(:report) { create(:report, status: :pending) }
+  let(:report) { create(:report, status: Report::PENDING) }
   let(:keyword1) { create(:keyword, value: "crawl api", report: report) }
   let(:keyword2) { create(:keyword, value: "how can i build a house", report: report) }
 
@@ -77,7 +77,7 @@ RSpec.describe Api::V1::Reports::FetchKeywords do
         expect(keyword2.reload.total_results).to be_nil
         expect(keyword2.reload.search_time).to be_nil
         expect(keyword2.reload.html_string).to be_nil
-        expect(keyword2.reload.status).to eq("pending")
+        expect(keyword2.reload.status).to eq(Keyword::PENDING)
       end
 
       it 'report updated correctly' do

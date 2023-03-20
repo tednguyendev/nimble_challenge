@@ -36,7 +36,7 @@ module Api
         def keywords
           @keywords ||=
             report.keywords
-                  .where(status: :pending)
+                  .where(status: Report::PENDING)
                   .order_by_created_at_ascending
         end
 
@@ -95,7 +95,10 @@ module Api
         end
 
         def get_links_count(doc)
-          doc.css('a').map { |l| l['href'] }.select { |l| l.is_a?(String) && "http".in?(l) && !".google.com".in?(l) }.uniq.count
+          doc.css('a')
+             .map { |l| l['href'] }.select { |l| l.is_a?(String) && "http".in?(l) && !".google.com".in?(l) }
+             .uniq
+             .count
         end
 
         def get_page_source(keyword)
@@ -122,6 +125,7 @@ module Api
 
         def handle_false
           report.update(status: :failed)
+
           send_report_status_mail
         end
 

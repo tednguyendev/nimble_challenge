@@ -30,13 +30,13 @@ module Api
         attr_reader :id, :current_user
 
         def update_report_status
-          report.update!(status: :pending)
+          report.update!(status: Report::PENDING)
         end
 
         def update_keywords_status
           report.keywords
                 .where(status: :failed)
-                .each { |r| r.update!(status: :pending) }
+                .each { |r| r.update!(status: Keyword::PENDING) }
         end
 
         def refetch_keywords

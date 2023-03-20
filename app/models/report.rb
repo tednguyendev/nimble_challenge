@@ -2,7 +2,13 @@ class Report < ApplicationRecord
   belongs_to :user
   has_many :keywords, dependent: :destroy
 
-  enum status: %i[pending failed success]
+  STATUSES = [
+    PENDING = 'pending',
+    FAILED = 'failed',
+    SUCCESS = 'success'
+  ].freeze
+
+  enum status: { PENDING => 0, FAILED => 1, SUCCESS => 2 }
   validates :name, length: { maximum: 255 }
 
   before_create :set_name

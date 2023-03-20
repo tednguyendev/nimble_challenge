@@ -1,5 +1,11 @@
 class Keyword < ApplicationRecord
-  enum status: %i[pending failed success]
+  STATUSES = [
+    PENDING = 'pending',
+    FAILED = 'failed',
+    SUCCESS = 'success'
+  ].freeze
+
+  enum status: { PENDING => 0, FAILED => 1, SUCCESS => 2 }
 
   belongs_to :user
   belongs_to :report

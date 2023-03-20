@@ -15,7 +15,7 @@ RSpec.describe Api::V1::Reports::RefetchKeywords, type: :model do
 
     let!(:keyword1) { create(:keyword, report: report, status: :success) }
     let!(:keyword2) { create(:keyword, report: report, status: :failed) }
-    let!(:keyword3) { create(:keyword, report: report, status: :pending) }
+    let!(:keyword3) { create(:keyword, report: report, status: Keyword::PENDING) }
 
     subject(:command) { described_class.new(params) }
 
@@ -41,7 +41,7 @@ RSpec.describe Api::V1::Reports::RefetchKeywords, type: :model do
       end
 
       it 'update record correctly' do
-        expect { command.call }.to change { report.reload.status }.from('failed').to('pending')
+        expect { command.call }.to change { report.reload.status }.from('failed').to(Report::PENDING)
       end
 
       it 'not update keywords1' do
@@ -49,7 +49,7 @@ RSpec.describe Api::V1::Reports::RefetchKeywords, type: :model do
       end
 
       it 'update keywords2 correctly' do
-        expect { command.call }.to change { keyword2.reload.status }.from('failed').to('pending')
+        expect { command.call }.to change { keyword2.reload.status }.from('failed').to(Report::PENDING)
       end
 
       it 'not update keywords3' do
