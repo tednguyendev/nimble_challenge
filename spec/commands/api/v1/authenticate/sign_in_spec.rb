@@ -1,62 +1,59 @@
 require 'rails_helper'
 
-RSpec.describe Api::V1::Authenticate::SignIn, type: :model do
-  describe '#call' do
-    let(:email) { 'ted@gmail.com' }
-    let(:password) { 'password123' }
-    let(:activated) { true }
-    let(:invalid_password) { 'password' }
-    let(:params) do
-      {
-        email: email,
-        password: password
-      }
+RSpec.describe Api::V1::Authenticate::SignIn do
+  let(:email) { 'jobs@tednguyen.me' }
+  let(:password) { 'password123' }
+  let(:user) { create(:user, email: email, password: password) }
+
+  subject(:command) { described_class.new(email: email, password: password) }
+
+  context 'when the email is incorrect' do
+    let(:email) { 'invalid@tednguyen.me' }
+
+    it 'fails' do
+      expect(command.call.success?).to be false
     end
 
+    it 'returns an error message in the response' do
+      expect(command.call.result[:message]).to eq('The email address or password is incorrect.')
+    end
+  end
+
+  context 'when the password is incorrect' do
+    let(:password) { 'incorrect' }
+
+    it 'fails' do
+      expect(command.call.success?).to be false
+    end
+
+    it 'returns an error message in the response' do
+      expect(command.call.result[:message]).to eq('The email address or password is incorrect.')
+    end
+  end
+
+  context 'when the user is not activated' do
+    before { user }
+
+    it 'fails' do
+      expect(command.call.success?).to be false
+    end
+
+    it 'returns an error message in the response' do
+      expect(command.call.result[:message]).to eq('This account is not activated yet.')
+    end
+  end
+
+  context 'when the email and password are correct & already activated' do
     before do
-      create(
-        :user,
-        email: email,
-        password: password,
-        activated: activated,
-      )
+      user.update(activated: true)
     end
 
-    context 'invalid login info?' do
-      let(:params) do
-        {
-          email: email,
-          password: invalid_password
-        }
-      end
-
-      it 'fails' do
-        cmd = described_class.call(params)
-        # pp "========>cmd.errors : ", cmd.errors, cmd.result
-
-        expect(cmd.success?).to be(false)
-      end
+    it 'succeeds' do
+      expect(command.call.success?).to be true
     end
 
-    context 'user not actived yet?' do
-      let(:activated) { false }
-
-      it 'fails' do
-        cmd = described_class.call(params)
-        # pp "========>cmd.errors : ", cmd.errors, cmd.result
-
-
-        expect(cmd.success?).to be(false)
-      end
-    end
-
-    context 'valid info?' do
-      it 'success' do
-        cmd = described_class.call(params)
-        pp "========>cmd.errors : ", cmd.errors, cmd.result
-
-        expect(cmd.success?).to be(true)
-      end
+    it 'returns a JWT token in the response data' do
+      expect(command.call.result[:data][:token]).to be_a(String)
     end
   end
 end
