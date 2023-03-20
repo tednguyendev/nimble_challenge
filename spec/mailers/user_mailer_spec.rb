@@ -6,7 +6,7 @@ RSpec.describe UserMailer, type: :mailer do
     let(:user_id) { user.id }
     let(:mail) { described_class.welcome(user_id).deliver_now }
 
-    context 'when user is not found' do
+    context 'user is not found' do
       let(:user_id) { 123 }
 
       it 'does not send an email' do
@@ -14,7 +14,7 @@ RSpec.describe UserMailer, type: :mailer do
       end
     end
 
-    context 'when user found' do
+    context 'user found' do
       it 'send an email' do
         expect { mail }.to change(ActionMailer::Base.deliveries, :count)
       end
