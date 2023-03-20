@@ -13,14 +13,12 @@ module Api
           return unless report.pending?
 
           keywords.in_groups_of(10).each do |group|
-            gr = group.compact
             sleep(long_delay)
 
-            gr.each do |keyword|
-              unless keyword.success?
-                status = fetch(keyword)
-                return handle_false unless status
-              end
+            group.compact.each do |keyword|
+              status = fetch(keyword)
+
+              return handle_false unless status
             end
           end
 
@@ -69,10 +67,8 @@ module Api
             total_results: total_results,
             search_time: search_time,
             html_string: html_string,
-            status: :success
+            status: Keyword::SUCCESS
           )
-
-          true
         end
 
         def get_total_results_and_search_time(doc)
@@ -111,6 +107,7 @@ module Api
           driver.get("https://www.google.com/search?q=#{URI.encode(keyword.value)}")
           source = driver.page_source
           driver.quit
+
           source
         end
 

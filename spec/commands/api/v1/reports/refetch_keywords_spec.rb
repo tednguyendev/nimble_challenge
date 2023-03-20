@@ -33,7 +33,7 @@ RSpec.describe Api::V1::Reports::RefetchKeywords, type: :model do
 
     context 'the report exists' do
       before do
-        report.update(status: :failed)
+        report.update(status: Report::FAILED)
       end
 
       it 'succeeds' do
