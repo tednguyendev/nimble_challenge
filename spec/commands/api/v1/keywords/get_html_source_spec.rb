@@ -12,7 +12,7 @@ RSpec.describe Api::V1::Keywords::GetHtmlSource, type: :model do
     let!(:user) { create(:user) }
     let!(:report1) { create(:report, user: user) }
     let(:html_string) { '<html><body><h1>Test</h1></body></html>' }
-    let!(:keyword1) { create(:keyword, value: 'a', html_string: html_string, report: report1) }
+    let!(:keyword1) { create(:keyword, value: 'a', status: :success, html_string: html_string, report: report1) }
 
     it 'test' do
       cmd = described_class.call(params)
