@@ -12,7 +12,6 @@ module Api
 
         def call
           return response(message: 'Keyword not exists.') if keyword_not_exists?
-          # return response(message: 'Keyword not exists.') if true
 
           response({
             data: {
@@ -30,7 +29,7 @@ module Api
         end
 
         def keyword
-          @keyword = Keyword.where(user: current_user).find_by_id(id)
+          @keyword = Keyword.where(user: current_user, status: :success).find_by_id(id)
         end
       end
     end

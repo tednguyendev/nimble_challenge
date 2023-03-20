@@ -16,13 +16,9 @@ module Api
         end
 
         def call
-          if invalid_file_format || invalid_file_size || invalid_total_keywords
-            errors.add(:file, 'invalid')
-
-            return response(
-              message: 'Invalid file'
-            )
-          end
+          return response(message: 'Invalid file type.') if invalid_file_format
+          return response(message: 'Invalid file size.') if invalid_file_size
+          return response(message: 'Invalid file content.') if invalid_total_keywords
 
           report = nil
 

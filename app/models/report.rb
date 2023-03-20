@@ -1,6 +1,6 @@
 class Report < ApplicationRecord
   belongs_to :user
-  has_many :keywords
+  has_many :keywords, dependent: :destroy
   enum status: %i[pending failed success]
 
   before_create :set_name
