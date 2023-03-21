@@ -31,7 +31,7 @@ group :development do
   gem 'capistrano'
   gem 'capistrano3-puma'
   gem 'capistrano-bundler'
-  # gem 'capistrano-faster-assets'
+  gem 'capistrano-faster-assets'
   gem 'net-ssh'
   gem 'ed25519'
   gem 'bcrypt_pbkdf'
