@@ -1,5 +1,8 @@
 # Nimble scraper
 
+![Thumbnail 1](public/thumbnail-dashboard.png)
+![Thumbnail 3](public/thumbnail-success.png)
+
 ## Index tree
 - [Nimble scraper](#nimble-scraper)
   - [Index tree](#index-tree)
@@ -21,11 +24,9 @@
   - [Things I will try to do if I still have time left](#things-i-will-try-to-do-if-i-still-have-time-left)
   - [Benchmark](#benchmark)
 
-![Thumbnail 1](public/thumbnail-dashboard.png)
-![Thumbnail 3](public/thumbnail-success.png)
-
 ## Demos
 - [First MVP 2023-03-19 17:47](https://share.cleanshot.com/bWY03jmP)
+- Dashbaord page:
 
 ## Links
 - [Front-end github repo](https://github.com/tednguyendev/nimble_challenge_fe)
