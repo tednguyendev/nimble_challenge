@@ -163,11 +163,8 @@ You can watch the video version [here](https://share.cleanshot.com/NhmTPBR1).
   - [ ] 1. There are some pages that, when scraped, its css is not loaded correctly entirely.
   - [ ] 2. I'm saving the cached HTML file to the database as a text field, which is not a good idea, as the database is not designed to store large files(The HTML files have around 1 million characters, which is a lot).
     - To solve this, I can use store these files to `AWS` `S3` instead, and then when the frontend needs, the backend just need to return the URL of the file, and the frontend can fetch the file from the URL.
-
 - [ ] Solves the captchas when Google detects that we are scraping
-
 - [ ] Localize i18n the texts in the application
-
 - [ ] Add the Admin page to manage the users and the reports
 
 ## Benchmark
