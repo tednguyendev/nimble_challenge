@@ -100,12 +100,14 @@ module Api
         def get_page_source(keyword)
           options = Selenium::WebDriver::Chrome::Options.new
           options.add_argument('headless')
+          options.add_argument("--user-agent=#{user_agent}}")
           driver = Selenium::WebDriver.for(:chrome, options: options)
 
           sleep(short_delay)
 
           driver.get("https://www.google.com/search?q=#{URI.encode(keyword.value)}")
           source = driver.page_source
+          # driver.execute_script('return navigator.userAgent')
           driver.quit
 
           source
