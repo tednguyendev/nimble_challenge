@@ -92,9 +92,9 @@ If we can not have many IPs, we must be as human as we are when scraping the pag
 
 The first method is to use random sleep(delay) time.
 
-Between each request to search Google, I put a randomly generated sleep time between 0.2 and 1.2 seconds as a mimic of human behaviour.
+Between each request to search Google, I put a [randomly generated sleep time](https://github.com/tednguyendev/nimble_challenge/blob/46751b7247c54ed64244474570f41b16326c7c4a/app/commands/api/v1/reports/fetch_keywords.rb#L46) between 0.2 and 1.2 seconds as a mimic of human behaviour.
 
-I also put in a random sleep time(a bit longer) between every ten requests, also as a mimic of being a human.
+I also put in a [random sleep time(a bit longer)](https://github.com/tednguyendev/nimble_challenge/blob/46751b7247c54ed64244474570f41b16326c7c4a/app/commands/api/v1/reports/fetch_keywords.rb#L41) between every ten requests, also as a mimic of being a human.
 
 The next method I use is that I have a list of user agents(about 1000 agents), and I rotate and pick one of them to use for each request to appear as if we are accessing the site from different devices or browsers.
 
