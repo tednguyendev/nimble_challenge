@@ -1,7 +1,6 @@
 # Nimble scraper
 
 ![Thumbnail 1](public/thumbnail-dashboard.png)
-![Thumbnail 3](public/thumbnail-success.png)
 
 ## Index tree
 - [Nimble scraper](#nimble-scraper)
