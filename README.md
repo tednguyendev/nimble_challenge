@@ -1,5 +1,21 @@
-# [WIP] Documentation
-I will use this README to show my approach, what obstacles I met, what are features I will implement if I still have time, and the demos, ...
+- [Demos](#demos)
+- [Links](#links)
+- [Code structures](#code-structures)
+  - [Backend(Rails)](#backendrails)
+    - [Structure](#structure)
+    - [Libraries](#libraries)
+  - [Frontend(React)](#frontendreact)
+    - [Structure](#structure-1)
+    - [Libraries](#libraries-1)
+- [Obstacles and approaches](#obstacles-and-approaches)
+  - [Obstacles](#obstacles)
+  - [My approaches](#my-approaches)
+  - [Dealing with Selenium's slowness](#dealing-with-seleniums-slowness)
+  - [Retry mechanism](#retry-mechanism)
+- [Current features](#current-features)
+- [What's left](#whats-left)
+- [Things I will try to do if I still have time left](#things-i-will-try-to-do-if-i-still-have-time-left)
+- [Benchmark](#benchmark)
 
 ## Demos
 - [First MVP 2023-03-19 17:47](https://share.cleanshot.com/bWY03jmP)
@@ -33,11 +49,11 @@ Given my limited experience, I prioritize simplicity in my work. To achieve this
 
 #### Structure
 I also use a common folder structure for this React project:
-- components: Reusable UI components for the application.
-- config: Configuration files needed for the application.
-- layouts: Files that define how application components are arranged on the page.
-- pages: High-level views or pages of the application.
-- services: Connects the application to external services such as APIs.
+- `components`: Reusable UI components for the application.
+- `config`: Configuration files needed for the application.
+- `layouts`: Files that define how application components are arranged on the page.
+- `pages`: High-level views or pages of the application.
+- `services`: Connects the application to external services such as APIs.
 
 #### Libraries
 I use `axios` to make HTTP requests, `react-router-dom` to handle the routing, and `antd`(Ant Design) to help me build the UI.
@@ -115,7 +131,7 @@ The email:
 
 And as the methods I implemented are not foolproof, I also implemented a retry mechanism to retry the scraping process if the scraping process fails.
 
-Every time Google detects that we are scraping and start preventing us from scraping, the backend will detect that and mark the status of the report and the current scraping keyword as "failed" to show the user that the scraping process is failed.
+Every time Google detects that we are scraping and start preventing us from scraping, the backend will detect that and mark the status of the report and the current scraping keyword as `failed` to show the user that the scraping process is failed.
 
 ![Fail message](public/fail-message.png)
 
@@ -125,7 +141,7 @@ The user then, after waiting for some minutes(so that Google will ease its rate 
 
 ![Retry button](public/retry-button.png)
 
-If the scraping is available now, it will mark the status of the report and the current scraping keyword back to "pending", and the process continues.
+If the scraping is available now, it will mark the status of the report and the current scraping keyword back to `pending`, and the process continues.
 
 ![Process again](public/process-pending-again.png)
 
@@ -140,7 +156,7 @@ You can watch the video version [here](https://share.cleanshot.com/NhmTPBR1).
 - Improve the codebase, make the code cleaner
 - Handle more edge cases
 - Improve UI-UX
-- Deploy the application to AWS using LightSail
+- Deploy the application to `AWS` using `LightSail`
 - Keep updating the documentation so that we can communicate asynchronously easier.
 
 ## Things I will try to do if I still have time left
