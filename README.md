@@ -1,22 +1,46 @@
 # [WIP] Documentation
-I will use this README to show about my approach, what obstables I met, what are the features that I will implement if I still have time, the demos, ...
+I will use this README to show my approach, what obstacles I met, what are features I will implement if I still have time, and the demos, ...
 
 ## Demos
 - [First MVP 2023-03-19 17:47](https://share.cleanshot.com/bWY03jmP)
 
 ## Links
-- [Frontend github repo](https://github.com/tednguyendev/nimble_challenge_fe)
+- [Front-end github repo](https://github.com/tednguyendev/nimble_challenge_fe)
 - [Postman collection(version 2023-03-19 20:00)](https://api.postman.com/collections/9434315-f930a92c-eb4e-48ee-89ef-8fb53ff49baf?access_key=PMAT-01GVWZ6R79MM3W3JXV76YR3B56)
 - [.env file]()
   - TBD
 
 ## Code structures
 ### Backend(Rails)
-...
+I choose Rails because it is the framework that I am most familiar with, and I think it is the most suitable for building MVPs like this.
+
+#### Structure
+I use a pretty standard structure for this project.
+
+Besides the default folders of Rails like models, controllers, views, ... I also added one `commands` folder to contain the service objects and the added one `presenters` folder to contain the presenters(serializers) files.
+
+#### Libraries
+I use:
+- Gem `jwt` to encode and decode the JWT token.
+- Gem `sidekiq` + `redis` to handle background processing.
+- Gem `selenium-webdriver` + `webdrivers` to scrape the Google Search results.
+- Gem `rspec-rails` + `shoulda-matchers` + `factory_bot_rails` + `faker` to write the tests.
 
 ### Frontend(React)
-...
+As a front-end developer, I admit I have limited field experience. However, I have chosen to work with React since it's the framework I'm most comfortable with.
 
+Given my limited experience, I prioritize simplicity in my work. To achieve this, I utilize structures, libraries, and coding styles that I last used over two and a half years ago. Although they may not be the latest standards, they are the ones I am most familiar with. I strive to continually improve my skills and stay up-to-date with the latest trends in front-end development.
+
+#### Structure
+I also use a common folder structure for this React project:
+- components: Reusable UI components for the application.
+- config: Configuration files needed for the application.
+- layouts: Files that define how application components are arranged on the page.
+- pages: High-level views or pages of the application.
+- services: Connects the application to external services such as APIs.
+
+#### Libraries
+I use `axios` to make HTTP requests, `react-router-dom` to handle the routing, and `antd`(Ant Design) to help me build the UI.
 
 ## Obstacles and approaches
 ### Obstacles
@@ -24,7 +48,7 @@ As I researched, one of the most popular and most efficient ways to handle the l
 - Use the Google Search API
 - Use the Google Search Scraping services from third-party services
 
-But as we can not use the third-party services, I then move on to find if there are any other ways.
+But as we can not use the third-party services, I then move on to find out if there are any other ways.
 
 Another method I find is to rotate the proxies.
 
@@ -113,13 +137,13 @@ You can watch the video version [here](https://share.cleanshot.com/NhmTPBR1).
 
 ## What's left
 ...
-- Improve codebase, make the code cleaner
+- Improve the codebase, make the code cleaner
 - Handle more edge cases
 - Improve UI-UX
 - Deploy the application to AWS using LightSail
 - Keep updating the documentation so that we can communicate asynchronously easier.
 
-## Things I will try to do if still have timeleft
+## Things I will try to do if I still have time left
 ...
 
 ## Benchmark

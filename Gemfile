@@ -9,8 +9,6 @@ gem 'puma', '~> 5.0'
 gem 'bcrypt', '~> 3.1.7'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'dotenv-rails'
-gem 'faker'
-gem 'httparty', '~> 0.18.1'
 gem 'jwt', '~> 2.2'
 gem 'kaminari'
 gem 'nokogiri'
@@ -19,8 +17,6 @@ gem 'redis'
 gem 'selenium-webdriver'
 gem 'sidekiq'
 gem 'simple_command', '~> 0.1.0'
-gem 'typhoeus'
-gem 'vcr'
 gem 'webdrivers', '~> 5.0'
 gem 'versionist'
 
@@ -39,6 +35,7 @@ group :test do
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'timecop'
+  gem 'faker'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
