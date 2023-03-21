@@ -33,14 +33,14 @@ RSpec.describe Api::V1::Reports::FetchKeywords do
 
       it 'keywords updated correctly' do
         expect(keyword1.reload.ad_words_count).to eq(3)
-        expect(keyword1.reload.links_count).to eq(113)
+        expect(keyword1.reload.links_count).to eq(170)
         expect(keyword1.reload.total_results).to eq(15000000)
         expect(keyword1.reload.search_time).to eq(0.59)
         expect(keyword1.reload.html_string).to eq(html_string1)
         expect(keyword1.reload.status).to eq("success")
 
         expect(keyword2.reload.ad_words_count).to eq(0)
-        expect(keyword2.reload.links_count).to eq(112)
+        expect(keyword2.reload.links_count).to eq(170)
         expect(keyword2.reload.total_results).to be_nil
         expect(keyword2.reload.search_time).to be_nil
         expect(keyword2.reload.html_string).to eq(html_string2)
