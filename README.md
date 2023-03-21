@@ -10,6 +10,14 @@ I will use this README to show about my approach, what obstables I met, what are
 - [.env file]()
   - TBD
 
+## Code structures
+### Backend(Rails)
+...
+
+### Frontend(React)
+...
+
+
 ## Obstacles and approaches
 ### Obstacles
 As I researched, one of the most popular and most efficient ways to handle the limitations of mass-searching keywords that people usually use are:
@@ -55,6 +63,8 @@ And the last thing is that I use the headless browser Selenium, as a headless br
 
 Of course, these are not foolproof methods to prevent being banned or blocked entirely, but every technique that can help us reduce the chance of being banned is worth implementing.
 
+### Dealing with Selenium's slowness
+
 One area of concern for using the headless browser is its slowness.
 
 To improve this, I also tried to use the Typhoeus to try to crawl, and although I found that it can speed up this process a lot by fetching pages parallelly, doing this faster also means that we are sending more requests to the servers, which also means that we are more likely to be banned(it only took like 4 or 5 CSV file uploads to be rate limited).
@@ -77,12 +87,26 @@ The email:
 
 ![Report finish](public/report-finish.png)
 
-## Code structures
-### Backend(Rails)
-...
+### Retry mechanism
 
-### Frontend(React)
-...
+And as the methods I implemented are not foolproof, I also implemented a retry mechanism to retry the scraping process if the scraping process fails.
+
+Every time Google detects that we are scraping and start preventing us from scraping, the backend will detect that and mark the status of the report and the current scraping keyword as "failed" to show the user that the scraping process is failed.
+
+![Fail message](public/fail-message.png)
+
+You can watch the video version [here](https://share.cleanshot.com/sMJlCKQ0).
+
+The user then, after waiting for some minutes(so that Google will ease its rate limiting on us), can click the retry button to retry the scraping process.
+
+![Retry button](public/retry-button.png)
+
+If the scraping is available now, it will mark the status of the report and the current scraping keyword back to "pending", and the process continues.
+
+![Process again](public/process-pending-again.png)
+
+You can watch the video version [here](https://share.cleanshot.com/NhmTPBR1).
+
 
 ## Current features
 ...
@@ -90,11 +114,12 @@ The email:
 ## What's left
 ...
 - Improve codebase, make the code cleaner
+- Handle more edge cases
 - Improve UI-UX
 - Deploy the application to AWS using LightSail
 - Keep updating the documentation so that we can communicate asynchronously easier.
 
-## Optional incoming features
+## Things I will try to do if still have timeleft
 ...
 
 ## Benchmark
