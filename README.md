@@ -1,7 +1,7 @@
-# Nimble crawler
+# Nimble scraper
 
 ## Index tree
-- [Nimble crawler](#nimble-crawler)
+- [Nimble scraper](#nimble-scraper)
   - [Index tree](#index-tree)
   - [Demos](#demos)
   - [Links](#links)
