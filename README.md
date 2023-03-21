@@ -1,3 +1,5 @@
+## Index tree
+- [Index tree](#index-tree)
 - [Demos](#demos)
 - [Links](#links)
 - [Code structures](#code-structures)
