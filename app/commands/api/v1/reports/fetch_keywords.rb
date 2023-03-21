@@ -87,7 +87,11 @@ module Api
         end
 
         def get_ad_words_count(doc)
-          doc.xpath('//*[@class="U3A9Ac qV8iec"]').count
+          normal_ads_count = doc.css('.U3A9Ac.qV8iec').count
+
+          # sometimes there are 2 of them, but only show 1 in the page
+          shopping_ads_count = doc.css('.fryEeb.U3A9Ac.irmCpc').count > 0 ? 1 : 0
+          normal_ads_count + shopping_ads_count
         end
 
         def get_links_count(doc)
