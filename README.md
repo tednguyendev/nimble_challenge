@@ -106,9 +106,9 @@ Of course, these are not foolproof methods to prevent being banned or blocked en
 
 One area of concern for using the headless browser is its slowness.
 
-To improve this, I also tried to use the Typhoeus to try to crawl, and although I found that it can speed up this process a lot by fetching pages parallelly, doing this faster also means that we are sending more requests to the servers, which also means that we are more likely to be banned(it only took like 4 or 5 CSV file uploads to be rate limited).
+To improve this, I also tried to use the Typhoeus to try to crawl, and although I found that it can speed up this process a lot by fetching pages parallelly, doing this faster also means that we are sending more requests to the servers, which also means that we are more likely to be banned(it only took like 4 or 5 CSV file uploads to be rate limited). So just trying to increase the speed of the process without consideration is not a good idea.
 
-The first method is to the polling method to keep loading and showing the user the scraped data for each keyword as soon as possible.
+My initial approach is to leverage the polling method, which enables the continuous loading and display of information to the user, which ensure prompt updates of the scraped data for each keyword.
 
 Like this,
 
@@ -128,7 +128,7 @@ The email:
 
 ### Retry mechanism
 
-And as the methods I implemented are not foolproof, I also implemented a retry mechanism to retry the scraping process if the scraping process fails.
+And as the methods I implemented are not foolproof, I also implemented a retry mechanism to retry the scraping process if fails.
 
 Every time Google detects that we are scraping and start preventing us from scraping, the backend will detect that and mark the status of the report and the current scraping keyword as `failed` to show the user that the scraping process is failed.
 
