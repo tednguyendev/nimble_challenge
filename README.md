@@ -1,14 +1,46 @@
 # [WIP] Documentation
-I will use this README to show about my approach, what obstables I met, what are the features that I will implement if I still have time, the demos, ...
+I will use this README to show my approach, what obstacles I met, what are features I will implement if I still have time, and the demos, ...
 
 ## Demos
 - [First MVP 2023-03-19 17:47](https://share.cleanshot.com/bWY03jmP)
 
 ## Links
-- [Frontend github repo](https://github.com/tednguyendev/nimble_challenge_fe)
+- [Front-end github repo](https://github.com/tednguyendev/nimble_challenge_fe)
 - [Postman collection(version 2023-03-19 20:00)](https://api.postman.com/collections/9434315-f930a92c-eb4e-48ee-89ef-8fb53ff49baf?access_key=PMAT-01GVWZ6R79MM3W3JXV76YR3B56)
 - [.env file]()
   - TBD
+
+## Code structures
+### Backend(Rails)
+I choose Rails because it is the framework that I am most familiar with, and I think it is the most suitable for building MVPs like this.
+
+#### Structure
+I use a pretty standard structure for this project.
+
+Besides the default folders of Rails like models, controllers, views, ... I also added one `commands` folder to contain the service objects and the added one `presenters` folder to contain the presenters(serializers) files.
+
+#### Libraries
+I use:
+- Gem `jwt` to encode and decode the JWT token.
+- Gem `sidekiq` + `redis` to handle background processing.
+- Gem `selenium-webdriver` + `webdrivers` to scrape the Google Search results.
+- Gem `rspec-rails` + `shoulda-matchers` + `factory_bot_rails` + `faker` to write the tests.
+
+### Frontend(React)
+As a front-end developer, I admit I have limited field experience. However, I have chosen to work with React since it's the framework I'm most comfortable with.
+
+Given my limited experience, I prioritize simplicity in my work. To achieve this, I utilize structures, libraries, and coding styles that I last used over two and a half years ago. Although they may not be the latest standards, they are the ones I am most familiar with. I strive to continually improve my skills and stay up-to-date with the latest trends in front-end development.
+
+#### Structure
+I also use a common folder structure for this React project:
+- components: Reusable UI components for the application.
+- config: Configuration files needed for the application.
+- layouts: Files that define how application components are arranged on the page.
+- pages: High-level views or pages of the application.
+- services: Connects the application to external services such as APIs.
+
+#### Libraries
+I use `axios` to make HTTP requests, `react-router-dom` to handle the routing, and `antd`(Ant Design) to help me build the UI.
 
 ## Obstacles and approaches
 ### Obstacles
@@ -16,7 +48,7 @@ As I researched, one of the most popular and most efficient ways to handle the l
 - Use the Google Search API
 - Use the Google Search Scraping services from third-party services
 
-But as we can not use the third-party services, I then move on to find if there are any other ways.
+But as we can not use the third-party services, I then move on to find out if there are any other ways.
 
 Another method I find is to rotate the proxies.
 
@@ -55,6 +87,8 @@ And the last thing is that I use the headless browser Selenium, as a headless br
 
 Of course, these are not foolproof methods to prevent being banned or blocked entirely, but every technique that can help us reduce the chance of being banned is worth implementing.
 
+### Dealing with Selenium's slowness
+
 One area of concern for using the headless browser is its slowness.
 
 To improve this, I also tried to use the Typhoeus to try to crawl, and although I found that it can speed up this process a lot by fetching pages parallelly, doing this faster also means that we are sending more requests to the servers, which also means that we are more likely to be banned(it only took like 4 or 5 CSV file uploads to be rate limited).
@@ -77,24 +111,39 @@ The email:
 
 ![Report finish](public/report-finish.png)
 
-## Code structures
-### Backend(Rails)
-...
+### Retry mechanism
 
-### Frontend(React)
-...
+And as the methods I implemented are not foolproof, I also implemented a retry mechanism to retry the scraping process if the scraping process fails.
+
+Every time Google detects that we are scraping and start preventing us from scraping, the backend will detect that and mark the status of the report and the current scraping keyword as "failed" to show the user that the scraping process is failed.
+
+![Fail message](public/fail-message.png)
+
+You can watch the video version [here](https://share.cleanshot.com/sMJlCKQ0).
+
+The user then, after waiting for some minutes(so that Google will ease its rate limiting on us), can click the retry button to retry the scraping process.
+
+![Retry button](public/retry-button.png)
+
+If the scraping is available now, it will mark the status of the report and the current scraping keyword back to "pending", and the process continues.
+
+![Process again](public/process-pending-again.png)
+
+You can watch the video version [here](https://share.cleanshot.com/NhmTPBR1).
+
 
 ## Current features
 ...
 
 ## What's left
 ...
-- Improve codebase, make the code cleaner
+- Improve the codebase, make the code cleaner
+- Handle more edge cases
 - Improve UI-UX
 - Deploy the application to AWS using LightSail
 - Keep updating the documentation so that we can communicate asynchronously easier.
 
-## Optional incoming features
+## Things I will try to do if I still have time left
 ...
 
 ## Benchmark
