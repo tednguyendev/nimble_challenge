@@ -92,9 +92,11 @@ module Api
 
         def get_links_count(doc)
           doc.css('a')
-             .map { |l| l['href'] }.select { |l| l.is_a?(String) && "http".in?(l) && !".google.com".in?(l) }
+             .map { |l| l['href'] }
+             .select { |l| l.is_a?(String)}
              .uniq
              .count
+             #  .select { |l| l.is_a?(String) && "http".in?(l) && !".google.com".in?(l) }
         end
 
         def get_page_source(keyword)
