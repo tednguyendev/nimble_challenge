@@ -12,7 +12,6 @@
   - [My approaches](#my-approaches)
   - [Dealing with Selenium's slowness](#dealing-with-seleniums-slowness)
   - [Retry mechanism](#retry-mechanism)
-- [Current features](#current-features)
 - [What's left](#whats-left)
 - [Things I will try to do if I still have time left](#things-i-will-try-to-do-if-i-still-have-time-left)
 - [Benchmark](#benchmark)
@@ -146,10 +145,6 @@ If the scraping is available now, it will mark the status of the report and the 
 ![Process again](public/process-pending-again.png)
 
 You can watch the video version [here](https://share.cleanshot.com/NhmTPBR1).
-
-
-## Current features
-...
 
 ## What's left
 - Improve the codebase, make the code cleaner
