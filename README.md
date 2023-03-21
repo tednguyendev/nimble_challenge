@@ -25,7 +25,6 @@
 
 ## Demos
 - [First MVP 2023-03-19 17:47](https://share.cleanshot.com/bWY03jmP)
-- Dashbaord page:
 
 ## Links
 - [Front-end github repo](https://github.com/tednguyendev/nimble_challenge_fe)
