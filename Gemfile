@@ -27,6 +27,18 @@ end
 group :development do
   gem 'listen', '~> 3.3'
   gem 'spring'
+
+  gem 'capistrano'
+  gem 'capistrano3-puma'
+  gem 'capistrano-bundler'
+  # gem 'capistrano-faster-assets'
+  gem 'net-ssh'
+  gem 'ed25519'
+  gem 'bcrypt_pbkdf'
+  gem 'capistrano-rails'
+  gem 'capistrano-rails-console'
+  gem 'capistrano-rbenv'
+  gem 'capistrano-sidekiq'
 end
 
 group :test do

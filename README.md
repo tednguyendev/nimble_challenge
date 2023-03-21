@@ -21,7 +21,6 @@
     - [Retry mechanism](#retry-mechanism)
   - [What's left](#whats-left)
   - [Things I will try to do if I still have time left](#things-i-will-try-to-do-if-i-still-have-time-left)
-  - [Benchmark](#benchmark)
 
 ## Demos
 - [First MVP 2023-03-19 17:47](https://share.cleanshot.com/bWY03jmP)
@@ -168,6 +167,3 @@ You can watch the video version [here](https://share.cleanshot.com/NhmTPBR1).
 - [ ] Solves the captchas when Google detects that we are scraping
 - [ ] Localize i18n the texts in the application
 - [ ] Add the Admin page to manage the users and the reports
-
-## Benchmark
-...
