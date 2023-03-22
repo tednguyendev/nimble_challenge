@@ -23,8 +23,8 @@ test:
 staging:
   <<: *default
   database: nimble_ted_challenge_staging
-  # username: <%= ENV['MYSQL_USERNAME'] %>
-  # password: <%= ENV['MYSQL_PASSWORD'] %>
+  username: <%= ENV['MYSQL_USERNAME'] %>
+  password: <%= ENV['MYSQL_PASSWORD'] %>
   # host: <%= ENV['MYSQL_HOST'] %>
   # port: <%= ENV.fetch('MYSQL_PORT') { 3306 } %>
   # ssl_mode: preferred

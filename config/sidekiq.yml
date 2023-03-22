@@ -1,0 +1,16 @@
+---
+:verbose: false
+:development:
+  :concurrency: 25
+  :daemon: false
+:staging:
+  :concurrency: 25
+  :daemon: true
+:test:
+  :concurrency: 25
+  :daemon: true
+:logfile: log/sidekiq.log
+:pidfile: tmp/pids/sidekiq.pid
+:queues:
+  - default
+  - mailers

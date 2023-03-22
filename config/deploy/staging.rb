@@ -8,4 +8,4 @@ set :environment, 'staging'
 # config file
 set :enable_ssl, false
 
-server '13.213.61.234', user: 'ubuntu', roles: %w{app db web}
+server '18.136.207.28', user: 'ubuntu', roles: %w{app db web}

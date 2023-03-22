@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.6.6'
 gem 'rails', '~> 6.1.7', '>= 6.1.7.3'
 gem 'postgresql'
-gem 'puma', '~> 5.0'
+gem 'puma', '4.3.12'
 
 gem 'bcrypt', '~> 3.1.7'
 gem 'bootsnap', '>= 1.4.4', require: false
@@ -15,7 +15,7 @@ gem 'nokogiri'
 gem 'rack-cors', '~> 1.1', '>= 1.1.1'
 gem 'redis'
 gem 'selenium-webdriver'
-gem 'sidekiq'
+gem 'sidekiq', '~> 5.0'
 gem 'simple_command', '~> 0.1.0'
 gem 'webdrivers', '~> 5.0'
 gem 'versionist'
@@ -25,13 +25,11 @@ group :development, :test do
 end
 
 group :development do
-  gem 'listen', '~> 3.3'
   gem 'spring'
 
   gem 'capistrano'
   gem 'capistrano3-puma'
   gem 'capistrano-bundler'
-  gem 'capistrano-faster-assets'
   gem 'net-ssh'
   gem 'ed25519'
   gem 'bcrypt_pbkdf'

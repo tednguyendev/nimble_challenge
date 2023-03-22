@@ -12,7 +12,7 @@ require "action_mailbox/engine"
 require "action_text/engine"
 require "action_view/railtie"
 require "action_cable/engine"
-require "sprockets/railtie"
+# require "sprockets/railtie"
 require "rails/test_unit/railtie"
 
 # Require the gems listed in Gemfile, including any gems
@@ -28,14 +28,12 @@ module NimbleChallenge
         resource '*', headers: :any, methods: %i[get post options put patch delete]
       end
     end
-
     config.load_defaults 6.1
     config.active_job.queue_adapter = :sidekiq
     ActionMailer::Base.delivery_method = :smtp
     ActionMailer::Base.smtp_settings = {
       address: 'smtp.gmail.com',
       port: 587,
-      domain: 'rubify.com',
       user_name: ENV['EMAIL'],
       password: ENV['EMAIL_PASSWORD'],
       authentication: 'plain',
