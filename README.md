@@ -110,7 +110,7 @@ I also put in a [random sleep time(a bit longer)](https://github.com/tednguyende
 
 The next method I use is that I have a list of user agents(about 100 agents), and [I rotate and pick one of them](https://github.com/tednguyendev/nimble_challenge/blob/d6300378d9a0061a8d4c78eeadb93e77208c0289/app/commands/api/v1/reports/fetch_keywords.rb#L116) to use for each request to appear as if we are accessing the site from different devices or browsers.
 
-Similar to the rotating user agents, I also have a small list of window sizes to rotate and use them to makes it looks like we are searching Google from different devices.
+Similar to the rotating user agents, I also have a s[mall list of window sizes](https://github.com/tednguyendev/nimble_challenge/blob/cb97aaa1102106fbb677a5b5ca199f8e8395473c/app/commands/api/v1/reports/fetch_keywords.rb#L140) to rotate and use them to makes it looks like we are searching Google from different devices.
 
 And the last thing is that [I use the headless browser Selenium](https://github.com/tednguyendev/nimble_challenge/blob/d6300378d9a0061a8d4c78eeadb93e77208c0289/app/commands/api/v1/reports/fetch_keywords.rb#L101), as a headless browser allows us to simulate a web browser without a graphical user interface, which can help us crawl websites more efficiently and avoid detection. Another reason I use Selenium is that these headless browsers can help us scrape the sites that also use JavaScript to render the pages(Like Google).
 
