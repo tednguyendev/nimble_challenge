@@ -23,7 +23,7 @@ module Api
             end
           end
 
-          send_report_status_mail
+          send_report_status_success
         end
 
         private
@@ -132,11 +132,15 @@ module Api
         def handle_false
           report.update(status: Report::FAILED)
 
-          send_report_status_mail
+          send_report_status_fail
         end
 
-        def send_report_status_mail
-          ReportMailer.report_status(report_id).deliver_later
+        def send_report_status_success
+          ReportMailer.report_status_success(report_id).deliver_later
+        end
+
+        def send_report_status_fail
+          ReportMailer.report_status_fail(report_id).deliver_later
         end
 
         attr_reader :report_id
