@@ -54,7 +54,7 @@ I use:
 - Gem `capistrano` + AWS Lightsail to deploy the application.
 
 ### Frontend(React)
-As a front-end developer, I admit I have limited field experience. However, I have chosen to work with React since it's the framework I'm most comfortable with.
+I admit I have limited field experience as a front-end developer. However, I have chosen to work with React since it's the framework I'm most comfortable with.
 
 Given my limited experience, I prioritize simplicity in my work. To achieve this, I utilize structures, libraries, and coding styles that I last used over two and a half years ago. Although they may not be the latest standards, they are the ones I am most familiar with. I strive to continually improve my skills and stay up-to-date with the latest trends in front-end development.
 
