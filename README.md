@@ -20,7 +20,6 @@
     - [My approaches](#my-approaches)
     - [Dealing with Selenium's slowness](#dealing-with-seleniums-slowness)
     - [Retry mechanism](#retry-mechanism)
-  - [What's left](#whats-left)
   - [Things I will try to do if I still have time left](#things-i-will-try-to-do-if-i-still-have-time-left)
 
 ## Demos
@@ -158,13 +157,6 @@ If the scraping is available now, it will mark the status of the report and the 
 ![Process again](public/process-pending-again.png)
 
 You can watch the video version [here](https://share.cleanshot.com/NhmTPBR1).
-
-## What's left
-- Improve the codebase, make the code cleaner
-- Handle more edge cases
-- Improve UI-UX
-- Deploy the application to `AWS` using `LightSail`
-- Keep updating the documentation so that we can communicate asynchronously easier.
 
 ## Things I will try to do if I still have time left
 - [ ] The HTML cached file
