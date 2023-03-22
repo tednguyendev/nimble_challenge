@@ -165,7 +165,7 @@ You can watch the video version [here](https://share.cleanshot.com/NhmTPBR1).
   - [ ] 1. There are some pages that, when scraped, its css is not loaded correctly entirely.
   - [ ] 2. I'm saving the cached HTML file to the database as a text field, which is acceptable for now. But the database is not designed to store large files(The HTML files I'm scraping have around 1 million characters, which is a lot).
     - To solve this, I can store these files to `AWS` `S3` instead, and then when the frontend needs, the backend just need to return the URL of the file, and the frontend can fetch the file from the URL.
-  - [ ] A button in each report to download all HTML cached files of that report for the user.
+  - [ ] 3. A button in each report to download all HTML cached files of that report for the user.
 - [ ] Localize i18n the texts in the application.
 - [ ] I will try to see if I can solve the captchas when getting rate limited like the how the services like [2Captcha](https://2captcha.com/) and [Anti Captcha](https://anti-captcha.com/) doing.
 - [ ] Add the Admin page to manage the users and the reports.
