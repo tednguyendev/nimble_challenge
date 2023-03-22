@@ -111,7 +111,6 @@ module Api
           driver = Selenium::WebDriver.for(:chrome, options: options)
 
           ws = window_size
-          print("========>ws : ", ws)
           target_size = Selenium::WebDriver::Dimension.new(ws[0], ws[1])
           driver.manage.window.size = target_size
 
@@ -129,8 +128,7 @@ module Api
         end
 
         def user_agent
-          user_agents.rotate!
-          user_agents.first
+          user_agents.sample
         end
 
         def user_agents
@@ -138,8 +136,7 @@ module Api
         end
 
         def window_size
-          window_sizes.rotate!
-          window_sizes.first
+          window_sizes.sample
         end
 
         def window_sizes
