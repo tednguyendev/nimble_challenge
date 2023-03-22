@@ -51,6 +51,11 @@ RSpec.describe Api::V1::Reports::FetchKeywords do
         expect(report.reload.status).to eq("success")
         expect(report.reload.percentage).to eq(100)
       end
+
+      it 'sends report status success mail' do
+        expect(ReportMailer).to receive(:report_status_success).with(report.id).and_call_original
+        command.send(:send_report_status_success)
+      end
     end
 
     context 'being blocked' do
@@ -84,12 +89,9 @@ RSpec.describe Api::V1::Reports::FetchKeywords do
         expect(report.reload.status).to eq("failed")
         expect(report.reload.percentage).to eq(0)
       end
-    end
-
-    describe '#send_report_status_mail' do
-      it 'sends report status mail' do
-        expect(ReportMailer).to receive(:report_status).with(report.id).and_call_original
-        command.send(:send_report_status_mail)
+      it 'sends report status fail mail' do
+        expect(ReportMailer).to receive(:report_status_fail).with(report.id).and_call_original
+        command.send(:send_report_status_fail)
       end
     end
   end
