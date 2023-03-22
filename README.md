@@ -93,13 +93,13 @@ As to rotate proxies, using third-party services is not the only way:
 
 Besides that, we can distribute the crawl to multiple machines, and each server can have its own IP.
 
-Another way is to use the headless browser to run the Tor browser - the browser that can help its user browse the internet anonymously without exposing their IP.
+Another way is to use the headless browser to run the [Tor browser](https://www.torproject.org/download/) - the browser that can help its user browse the internet anonymously without exposing their IP.
 
-These are all the ways that are still very effective in protecting the application from being banned, although not as effective as using rotating proxies or scraping services. But since I think they are still third-party services(creating our own proxies may need tools and servers, using Tor means that we depend on Tor, or distributing the crawl may need more cloud servers ,...), I won't use them. But if they are not and I can use them, please tell me; thank you!
+These are all the ways that are still very effective in protecting the application from being banned, although not as effective as using rotating proxies or scraping services. But since I think they are still third-party services(creating our own proxies may need tools like [CloudProxy](https://github.com/claffin/cloudproxy), using Tor means that we depend on Tor, or distributing the crawl may need more cloud servers ,...), I won't use them. But if they are not and I can use them, please tell me; thank you!
 
 ### My approaches
 Not as effective as the earlier methods, I figured out that there are still ways to reduce the chance of the application being banned.
-s
+
 If we can not have many IPs, we must be as human as we are when scraping the pages.
 
 The first method is to use random sleep(delay) time.
@@ -109,6 +109,8 @@ Between each request to search Google, I put a [randomly generated sleep time](h
 I also put in a [random sleep time(a bit longer)](https://github.com/tednguyendev/nimble_challenge/blob/46751b7247c54ed64244474570f41b16326c7c4a/app/commands/api/v1/reports/fetch_keywords.rb#L41) between every ten requests, also as a mimic of being a human.
 
 The next method I use is that I have a list of user agents(about 100 agents), and [I rotate and pick one of them](https://github.com/tednguyendev/nimble_challenge/blob/d6300378d9a0061a8d4c78eeadb93e77208c0289/app/commands/api/v1/reports/fetch_keywords.rb#L116) to use for each request to appear as if we are accessing the site from different devices or browsers.
+
+Similar to the rotating user agents, I also have a small list of window sizes to rotate and use them to makes it looks like we are searching Google from different devices.
 
 And the last thing is that [I use the headless browser Selenium](https://github.com/tednguyendev/nimble_challenge/blob/d6300378d9a0061a8d4c78eeadb93e77208c0289/app/commands/api/v1/reports/fetch_keywords.rb#L101), as a headless browser allows us to simulate a web browser without a graphical user interface, which can help us crawl websites more efficiently and avoid detection. Another reason I use Selenium is that these headless browsers can help us scrape the sites that also use JavaScript to render the pages(Like Google).
 
@@ -164,6 +166,6 @@ You can watch the video version [here](https://share.cleanshot.com/NhmTPBR1).
   - [ ] 2. I'm saving the cached HTML file to the database as a text field, which is acceptable for now. But the database is not designed to store large files(The HTML files I'm scraping have around 1 million characters, which is a lot).
     - To solve this, I can store these files to `AWS` `S3` instead, and then when the frontend needs, the backend just need to return the URL of the file, and the frontend can fetch the file from the URL.
   - [ ] A button in each report to download all HTML cached files of that report for the user.
-- [ ] Solves the captchas when Google detects that we are scraping(Although there are services that can help us like [2Captcha](https://2captcha.com/) or [Anti Captcha](https://anti-captcha.com/), solving with our own code is not a trivial task).
 - [ ] Localize i18n the texts in the application.
+- [ ] I will try to see if I can solve the captchas when getting rate limited like the how the services like [2Captcha](https://2captcha.com/) and [Anti Captcha](https://anti-captcha.com/) doing.
 - [ ] Add the Admin page to manage the users and the reports.
