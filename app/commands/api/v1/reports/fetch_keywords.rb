@@ -110,23 +110,47 @@ module Api
           options.add_argument("--user-agent=#{user_agent}}")
           driver = Selenium::WebDriver.for(:chrome, options: options)
 
+          ws = window_size
+          target_size = Selenium::WebDriver::Dimension.new(ws[0], ws[1])
+          driver.manage.window.size = target_size
+
           sleep(short_delay)
 
           driver.get("https://www.google.com/search?q=#{URI.encode(keyword.value)}")
           source = driver.page_source
+
           # driver.execute_script('return navigator.userAgent')
+          # driver.manage.window.size
+
           driver.quit
 
           source
         end
 
         def user_agent
-          user_agents.rotate!
-          user_agents.first
+          user_agents.sample
         end
 
         def user_agents
           @user_agents ||= Api::V1::Reports::GetUserAgents.call.result
+        end
+
+        def window_size
+          window_sizes.sample
+        end
+
+        def window_sizes
+          @window_sizes ||=
+            [
+              # [1280, 800],
+              # [1366, 768],
+              # [1440, 900],
+              [1600, 900],
+              [1680, 1050],
+              [1920, 1080],
+              [1920, 1200],
+              [2560, 1600]
+            ]
         end
 
         def handle_false
