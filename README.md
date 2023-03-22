@@ -102,7 +102,7 @@ Between each request to search Google, I put a [randomly generated sleep time](h
 
 I also put in a [random sleep time(a bit longer)](https://github.com/tednguyendev/nimble_challenge/blob/46751b7247c54ed64244474570f41b16326c7c4a/app/commands/api/v1/reports/fetch_keywords.rb#L41) between every ten requests, also as a mimic of being a human.
 
-The next method I use is that I have a list of user agents(about 1000 agents), and [I rotate and pick one of them](https://github.com/tednguyendev/nimble_challenge/blob/d6300378d9a0061a8d4c78eeadb93e77208c0289/app/commands/api/v1/reports/fetch_keywords.rb#L116) to use for each request to appear as if we are accessing the site from different devices or browsers.
+The next method I use is that I have a list of user agents(about 100 agents), and [I rotate and pick one of them](https://github.com/tednguyendev/nimble_challenge/blob/d6300378d9a0061a8d4c78eeadb93e77208c0289/app/commands/api/v1/reports/fetch_keywords.rb#L116) to use for each request to appear as if we are accessing the site from different devices or browsers.
 
 And the last thing is that [I use the headless browser Selenium](https://github.com/tednguyendev/nimble_challenge/blob/d6300378d9a0061a8d4c78eeadb93e77208c0289/app/commands/api/v1/reports/fetch_keywords.rb#L101), as a headless browser allows us to simulate a web browser without a graphical user interface, which can help us crawl websites more efficiently and avoid detection. Another reason I use Selenium is that these headless browsers can help us scrape the sites that also use JavaScript to render the pages(Like Google).
 
