@@ -40,12 +40,12 @@ module Api
 
         def long_delay
           # to create some randomness, fake human behavior
-          rand(0.4..2.4).round(1)
+          rand(3.1..4.1).round(1)
         end
 
         def short_delay
           # to create some randomness, fake human behavior
-          rand(0.2..1.2).round(1)
+          rand(2.0..3.0).round(1)
         end
 
         def fetch(keyword)
