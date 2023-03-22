@@ -6,6 +6,7 @@
 - [Nimble scraper](#nimble-scraper)
   - [Index tree](#index-tree)
   - [Demos](#demos)
+  - [Staging environment(Using AWS Lightsail)](#staging-environmentusing-aws-lightsail)
   - [Links](#links)
   - [Code structures](#code-structures)
     - [Backend(Rails)](#backendrails)
@@ -24,6 +25,11 @@
 
 ## Demos
 - [First MVP 2023-03-19 17:47](https://share.cleanshot.com/bWY03jmP)
+
+## Staging environment(Using AWS Lightsail)
+- [Link](http://18.136.207.28/)
+
+![Staging](public/staging.png)
 
 ## Links
 - [Front-end github repo](https://github.com/tednguyendev/nimble_challenge_fe)
@@ -46,6 +52,7 @@ I use:
 - Gem `sidekiq` + `redis` to handle background processing.
 - Gem `selenium-webdriver` + `webdrivers` to scrape the Google Search results.
 - Gem `rspec-rails` + `shoulda-matchers` + `factory_bot_rails` + `faker` to write the tests.
+- Gem `capistrano` + AWS Lightsail to deploy the application.
 
 ### Frontend(React)
 As a front-end developer, I admit I have limited field experience. However, I have chosen to work with React since it's the framework I'm most comfortable with.
@@ -93,7 +100,7 @@ These are all the ways that are still very effective in protecting the applicati
 
 ### My approaches
 Not as effective as the earlier methods, I figured out that there are still ways to reduce the chance of the application being banned.
-
+s
 If we can not have many IPs, we must be as human as we are when scraping the pages.
 
 The first method is to use random sleep(delay) time.
