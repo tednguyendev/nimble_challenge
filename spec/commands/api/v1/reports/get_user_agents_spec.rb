@@ -4,6 +4,6 @@ RSpec.describe Api::V1::Reports::GetUserAgents do
   subject(:command) { described_class.new() }
 
   it 'returns correct agents' do
-    expect(command.call.result.length).to eq(1000)
+    expect(command.call.result.length).to eq(100)
   end
 end

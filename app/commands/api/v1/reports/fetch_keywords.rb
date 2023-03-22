@@ -16,9 +16,10 @@ module Api
             sleep(long_delay)
 
             group.compact.each do |keyword|
-              status = fetch(keyword)
-
-              return handle_false unless status
+              unless keyword.success?
+                status = fetch(keyword)
+                return handle_false unless status
+              end
             end
           end
 
