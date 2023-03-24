@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
       scope :keywords do
         get '/:id/html-source', to: 'keywords#get_html_source'
+        get '/:id/html-page', to: 'keywords#get_html_page'
       end
     end
   end
