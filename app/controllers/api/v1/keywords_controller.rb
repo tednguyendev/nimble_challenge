@@ -12,13 +12,13 @@ module Api
       end
 
       def get_html_page
-        # cmd = Api::V1::Keywords::GetHtmlSource.call(permitted_params.merge(current_user: current_user))
+        cmd = Api::V1::Keywords::GetHtmlSource.call(permitted_params.merge(current_user: current_user))
 
-        # if cmd.success?
-        #   render html: cmd.result[:data][:html_string].html_safe
-        # else
-        #   render json: cmd.result, status: :unprocessable_entity
-        # end
+        if cmd.success?
+          render json: cmd.result, status: :ok
+        else
+          render json: cmd.result, status: :unprocessable_entity
+        end
       end
 
       private
