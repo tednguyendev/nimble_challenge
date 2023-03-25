@@ -11,6 +11,16 @@ module Api
         end
       end
 
+      def get_html_page
+        cmd = Api::V1::Keywords::GetHtmlSource.call(permitted_params.merge(current_user: current_user))
+
+        if cmd.success?
+          render json: cmd.result, status: :ok
+        else
+          render json: cmd.result, status: :unprocessable_entity
+        end
+      end
+
       private
 
       def permitted_params
