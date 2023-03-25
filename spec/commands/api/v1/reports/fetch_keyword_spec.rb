@@ -19,7 +19,7 @@ RSpec.describe Api::V1::Reports::FetchKeyword do
       let(:html_string) { File.open(Rails.root.join('spec', 'mocks', 'crawl_api_google.html'), 'r').read }
 
       before do
-        allow(command).to receive(:get_page_source).and_return(html_string)
+        allow(command).to receive(:get_html_string).and_return(html_string)
         allow(ReportMailer).to receive(:report_status).and_return(double(deliver_later: true))
 
         command.call
@@ -51,7 +51,7 @@ RSpec.describe Api::V1::Reports::FetchKeyword do
       let(:html_string) { File.open(Rails.root.join('spec', 'mocks', 'capcha.html'), 'r').read }
 
       before do
-        allow(command).to receive(:get_page_source).and_return(html_string)
+        allow(command).to receive(:get_html_string).and_return(html_string)
         allow(ReportMailer).to receive(:report_status).and_return(double(deliver_later: true))
 
         command.call

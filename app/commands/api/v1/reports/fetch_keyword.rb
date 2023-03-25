@@ -26,7 +26,7 @@ module Api
         private
 
         def fetch
-          html_string = get_page_source
+          html_string = get_html_string
           # html_string = File.open(Rails.root.join('spec', 'mocks', 'crawl_api_google.html'), 'r').read
           doc = Nokogiri::HTML(html_string)
 
@@ -46,6 +46,10 @@ module Api
               status: Keyword::SUCCESS
             )
           end
+        end
+
+        def get_html_string
+          GetKeywordHtmlString.call(keyword.value).result
         end
 
         def mark_keyword_as_failed
@@ -93,57 +97,6 @@ module Api
              .uniq
              .count
              #  .select { |l| l.is_a?(String) && "http".in?(l) && !".google.com".in?(l) }
-        end
-
-        def get_page_source
-          options = Selenium::WebDriver::Chrome::Options.new
-          options.add_argument('headless')
-          options.add_argument("--user-agent=#{user_agent}}")
-
-          client = Selenium::WebDriver::Remote::Http::Default.new
-          client.read_timeout = 180
-
-          driver = Selenium::WebDriver.for(:chrome, http_client: client, options: options)
-
-          ws = window_size
-          target_size = Selenium::WebDriver::Dimension.new(ws[0], ws[1])
-          driver.manage.window.size = target_size
-
-          driver.get("https://www.google.com/search?q=#{URI.encode(keyword.value)}")
-          source = driver.page_source
-
-          # driver.execute_script('return navigator.userAgent')
-          # driver.manage.window.size
-
-          driver.quit
-
-          source
-        end
-
-        def user_agent
-          user_agents.sample
-        end
-
-        def user_agents
-          @user_agents ||= Api::V1::Reports::GetUserAgents.call.result
-        end
-
-        def window_size
-          window_sizes.sample
-        end
-
-        def window_sizes
-          @window_sizes ||=
-            [
-              # [1280, 800],
-              # [1366, 768],
-              # [1440, 900],
-              [1600, 900],
-              [1680, 1050],
-              [1920, 1080],
-              [1920, 1200],
-              [2560, 1600]
-            ]
         end
 
         def update_report
