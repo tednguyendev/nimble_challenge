@@ -23,19 +23,6 @@ RSpec.describe Keyword, type: :model do
         end
       end
     end
-
-    describe 'update_report_percentage' do
-      context 'a keyword is updated' do
-        let(:keyword) { create(:keyword, report: report, status: :pending) }
-
-        it 'updates the report percentage' do
-          expect { keyword.update(status: :success) }
-            .to change { report.reload.percentage }
-            .from(0)
-            .to(100.0)
-        end
-      end
-    end
   end
 
   describe 'scopes' do

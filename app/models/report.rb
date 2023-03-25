@@ -12,7 +12,7 @@ class Report < ApplicationRecord
   validates :name, length: { maximum: 255 }
 
   before_create :set_name
-  before_update :set_status
+  # before_update :set_status
 
   scope :order_by_name_descending, -> { order(name: :desc) }
   scope :order_by_name_ascending, -> { order(name: :asc) }
@@ -29,9 +29,9 @@ class Report < ApplicationRecord
     self.name = "Report at #{Time.current.strftime('%Y-%m-%d %H:%M:%S')}" if self.new_record? && !self.name.present?
   end
 
-  def set_status
-    if percentage == 100
-      self.status = :success
-    end
-  end
+  # def set_status
+  #   if percentage == 100
+  #     self.status = :success
+  #   end
+  # end
 end

@@ -93,23 +93,5 @@ RSpec.describe Report, type: :model do
         end
       end
     end
-
-    describe 'set_status' do
-      context 'percentage is 100' do
-        it 'sets the status to :success' do
-          report = create(:report, status: :pending)
-          report.update(percentage: 100)
-          expect(report.status).to eq('success')
-        end
-      end
-
-      context 'percentage is not 100' do
-        it 'does not set the status to :success' do
-          report = create(:report, status: :pending)
-          report.update(percentage: 90)
-          expect(report.status).to eq('pending')
-        end
-      end
-    end
   end
 end
