@@ -67,7 +67,7 @@ RSpec.describe Api::V1::Reports::FetchKeyword do
       end
 
       it 'report percentage updated correctly' do
-        expect(report.reload.percentage).to eq(0)
+        expect(report.reload.percentage).to eq(100)
       end
 
       it 'report status updated correctly' do
