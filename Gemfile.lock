@@ -234,8 +234,6 @@ GEM
       rack (~> 2.0)
       rack-protection (>= 1.5.0)
       redis (~> 4.5, < 4.6.0)
-    sidekiq-batch (0.1.9)
-      sidekiq (>= 3)
     simple_command (0.1.0)
     spring (3.1.1)
     sprockets (4.2.0)
@@ -305,7 +303,6 @@ DEPENDENCIES
   selenium-webdriver
   shoulda-matchers
   sidekiq (~> 5.0)
-  sidekiq-batch
   simple_command (~> 0.1.0)
   spring
   timecop
