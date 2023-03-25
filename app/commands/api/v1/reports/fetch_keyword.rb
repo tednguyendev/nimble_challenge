@@ -10,19 +10,26 @@ module Api
         end
 
         def call
-          # if keyword_id == 2933
-          #   keyword.update(status: Keyword::FAILED)
-          #   raise 'a'
-          # end
-
           return unless keyword
 
+          begin
+            fetch
+          rescue
+            mark_keyword_as_failed
+          ensure
+            update_report
+          end
+        end
+
+        private
+
+        def fetch
           html_string = get_page_source
           # html_string = File.open(Rails.root.join('spec', 'mocks', 'capcha.html'), 'r').read
           doc = Nokogiri::HTML(html_string)
 
           if doc.css('#captcha-form').length >= 1
-            keyword.update(status: Keyword::FAILED)
+            mark_keyword_as_failed
           else
             total_results, search_time = get_total_results_and_search_time(doc)
             ad_words_count = get_ad_words_count(doc)
@@ -37,11 +44,11 @@ module Api
               status: Keyword::SUCCESS
             )
           end
-
-          update_report
         end
 
-        private
+        def mark_keyword_as_failed
+          keyword.update(status: Keyword::FAILED)
+        end
 
         def keyword
           @keyword ||=
