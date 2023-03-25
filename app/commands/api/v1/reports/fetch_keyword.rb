@@ -14,7 +14,8 @@ module Api
 
           begin
             fetch
-          rescue
+          rescue Exception => e
+            print("========>e : ", e)
             mark_keyword_as_failed
           ensure
             update_report
@@ -25,11 +26,11 @@ module Api
 
         def fetch
           html_string = get_page_source
-          # html_string = File.open(Rails.root.join('spec', 'mocks', 'capcha.html'), 'r').read
+          # html_string = File.open(Rails.root.join('spec', 'mocks', 'crawl_api_google.html'), 'r').read
           doc = Nokogiri::HTML(html_string)
 
           if doc.css('#captcha-form').length >= 1
-            mark_keyword_as_failed
+            raise 'captcha'
           else
             total_results, search_time = get_total_results_and_search_time(doc)
             ad_words_count = get_ad_words_count(doc)
@@ -102,6 +103,7 @@ module Api
           ws = window_size
           target_size = Selenium::WebDriver::Dimension.new(ws[0], ws[1])
           driver.manage.window.size = target_size
+          driver.manage.timeouts.page_load = 180
 
           driver.get("https://www.google.com/search?q=#{URI.encode(keyword.value)}")
           source = driver.page_source
@@ -154,7 +156,7 @@ module Api
         def percentage
           keywords_count = report.keywords.count
 
-          success_keywords_count = report.keywords.where(status: Report::SUCCESS).count
+          success_keywords_count = report.keywords.where.not(status: Report::PENDING).count
 
           (success_keywords_count.to_f / keywords_count) * 100
         end
