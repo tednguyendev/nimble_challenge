@@ -11,6 +11,7 @@ module Api
 
         def call
           return unless keyword
+          print("========>keyword.value : ", keyword.value)
 
           begin
             fetch
@@ -98,12 +99,15 @@ module Api
           options = Selenium::WebDriver::Chrome::Options.new
           options.add_argument('headless')
           options.add_argument("--user-agent=#{user_agent}}")
-          driver = Selenium::WebDriver.for(:chrome, options: options)
+
+          client = Selenium::WebDriver::Remote::Http::Default.new
+          client.read_timeout = 180
+
+          driver = Selenium::WebDriver.for(:chrome, http_client: client, options: options)
 
           ws = window_size
           target_size = Selenium::WebDriver::Dimension.new(ws[0], ws[1])
           driver.manage.window.size = target_size
-          driver.manage.timeouts.page_load = 180
 
           driver.get("https://www.google.com/search?q=#{URI.encode(keyword.value)}")
           source = driver.page_source
