@@ -6,6 +6,9 @@ Rails.application.routes.draw do
       get '/verify-email', to: 'authenticate#verify_email'
       post '/sign-in', to: 'authenticate#sign_in'
 
+      scope :reportss do
+        get '', to: 'reports#list'
+      end
       scope :reports do
         post '', to: 'reports#create'
         get '', to: 'reports#list'
