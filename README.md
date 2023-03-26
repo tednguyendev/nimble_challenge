@@ -169,4 +169,3 @@ You can watch the video version [here](https://share.cleanshot.com/NhmTPBR1).
 - [ ] Localize i18n the texts in the application.
 - [ ] I will try to see if I can solve the captchas when getting rate limited like the how the services like [2Captcha](https://2captcha.com/) and [Anti Captcha](https://anti-captcha.com/) doing.
 - [ ] Add the Admin page to manage the users and the reports.
-
