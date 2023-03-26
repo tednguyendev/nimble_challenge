@@ -3,11 +3,8 @@ name: Deploy To Server
 on:
   # Deploy on merge to main
   push:
-    branches: [ set-up-ci-cd ]
-    # branches: [ main ]
-#  # Manually deploy branch
-#  workflow_dispatch:
-#    branches: [ main ]
+    # branches: [ set-up-ci-cd ]
+    branches: [ main ]
 
 jobs:
   test:
