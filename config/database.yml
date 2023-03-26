@@ -19,12 +19,17 @@ development:
 test:
   <<: *default
   database: nimble_ted_challenge_test
+  adapter: postgresql
+  host: localhost
+  encoding: unicode
+  username: <%= ENV['DATABASE_USERNAME'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
 
 staging:
   <<: *default
   database: nimble_ted_challenge_staging
-  username: <%= ENV['MYSQL_USERNAME'] %>
-  password: <%= ENV['MYSQL_PASSWORD'] %>
+  username: <%= ENV['DATABASE_USERNAME'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
   # host: <%= ENV['MYSQL_HOST'] %>
   # port: <%= ENV.fetch('MYSQL_PORT') { 3306 } %>
   # ssl_mode: preferred
