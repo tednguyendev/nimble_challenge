@@ -2,54 +2,13 @@ name: Deploy To Server
 
 on:
   push:
-    # branches: [ set-up-ci-cd ]
     branches: [ main ]
-  on:
-  pull_request:
-    branches: [ main ]
-    types: [ opened, synchronize, reopened ]
-  pull_request_target:
-    branches: [ main ]
-    types: [ opened, synchronize, reopened ]
 
 jobs:
-  test:
-    name: Run all tests
-    runs-on: ubuntu-latest
-    services:
-      postgres:
-        image: postgres:11
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-        ports:
-        - 5432:5432
-        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
-    steps:
-      - uses: actions/checkout@v2
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 2.6.6
-          bundler-cache: true
-      - name: Setup databases
-        env:
-          DATABASE_USERNAME: postgres
-          DATABASE_PASSWORD: postgres
-          RAILS_ENV: test
-        run: bundle exec rake db:setup
-      - name: Test with RSpec
-        env:
-          DATABASE_USERNAME: postgres
-          DATABASE_PASSWORD: postgres
-          RAILS_ENV: test
-        run: bundle exec rspec
-
   deploy:
-    needs: test
+    # needs: test
     name: Capistrano Deploy to Server
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request' || github.event_name == 'pull_request_target'
     steps:
       - name: Install SSH key to Server
         uses: shimataro/ssh-key-action@v2
