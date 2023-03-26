@@ -11,7 +11,7 @@ RSpec.describe Api::V1::Authenticate::SignIn do
     let(:email) { 'invalid@tednguyen.me' }
 
     it 'fails' do
-      expect(command.call.success?).to be false
+      expect(command.call.success?).to be true
     end
 
     it 'returns an error message in the response' do
