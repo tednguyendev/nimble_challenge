@@ -17,9 +17,20 @@ RSpec.describe Api::V1::Reports::FetchKeyword do
   context 'when keyword is processing' do
     context 'fetch success all keywords' do
       let(:html_string) { File.open(Rails.root.join('spec', 'mocks', 'crawl_api_google.html'), 'r').read }
-
+      let(:parse_html_string_result) {
+        {
+          have_captcha: false,
+          data: {
+            ad_words_count: 3,
+            links_count: 170,
+            total_results: 15000000,
+            search_time: 0.59
+          }
+        }
+      }
       before do
-        allow(command).to receive(:get_page_source).and_return(html_string)
+        allow(command).to receive(:get_html_string).and_return(html_string)
+        allow(command).to receive(:parse_html_string).with(html_string).and_return(parse_html_string_result)
         allow(ReportMailer).to receive(:report_status).and_return(double(deliver_later: true))
 
         command.call
@@ -49,9 +60,14 @@ RSpec.describe Api::V1::Reports::FetchKeyword do
 
     context 'being blocked' do
       let(:html_string) { File.open(Rails.root.join('spec', 'mocks', 'capcha.html'), 'r').read }
-
+      let(:parse_html_string_result) {
+        {
+          have_captcha: true,
+        }
+      }
       before do
-        allow(command).to receive(:get_page_source).and_return(html_string)
+        allow(command).to receive(:get_html_string).and_return(html_string)
+        allow(command).to receive(:parse_html_string).with(html_string).and_return(parse_html_string_result)
         allow(ReportMailer).to receive(:report_status).and_return(double(deliver_later: true))
 
         command.call
