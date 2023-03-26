@@ -1,4 +1,5 @@
 set :stage, :staging
+# set :branch, 'set-up-ci-cd'
 set :branch, 'main'
 set :rbenv_ruby, '2.6.6'
 
@@ -8,4 +9,4 @@ set :environment, 'staging'
 # config file
 set :enable_ssl, false
 
-server '18.136.207.28', user: 'ubuntu', roles: %w{app db web}
+server '18.136.207.28', user: 'ubuntu', roles: %w{app db web runner}
