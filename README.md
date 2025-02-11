@@ -1,5 +1,7 @@
 # Nimble scraper
 
+> **_NOTE:_**  This is my assignment for my Nimble interview
+
 ![Thumbnail 1](public/thumbnail-dashboard.png)
 
 ## Index tree
